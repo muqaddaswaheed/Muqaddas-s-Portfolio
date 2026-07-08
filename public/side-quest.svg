@@ -1,0 +1,50 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1210"/><stop offset="1" stop-color="#0a0f0d"/>
+    </linearGradient>
+    <linearGradient id="ac2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <radialGradient id="gl2" cx="0.3" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.22"/><stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <rect width="1280" height="720" fill="url(#gl2)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04"><path d="M0 180H1280M0 360H1280M0 540H1280M320 0V720M640 0V720M960 0V720"/></g>
+
+  <rect x="80" y="70" width="1120" height="52" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <circle cx="112" cy="96" r="6" fill="#ef4444" fill-opacity="0.6"/><circle cx="134" cy="96" r="6" fill="#f59e0b" fill-opacity="0.6"/><circle cx="156" cy="96" r="6" fill="#10b981" fill-opacity="0.7"/>
+  <rect x="200" y="84" width="900" height="24" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <text x="230" y="101" font-family="monospace" font-size="15" fill="#34d399">sidequest.shop</text>
+
+  <!-- storefront -->
+  <g transform="translate(150 180)">
+    <!-- awning -->
+    <path d="M0 60 L560 60 L560 110 L0 110 Z" fill="url(#ac2)"/>
+    <g fill="#0a0f0d" fill-opacity="0.25"><rect x="0" y="60" width="70" height="50"/><rect x="140" y="60" width="70" height="50"/><rect x="280" y="60" width="70" height="50"/><rect x="420" y="60" width="70" height="50"/></g>
+    <path d="M0 110 L560 110 L560 300 L0 300 Z" fill="#ffffff" fill-opacity="0.05"/>
+    <!-- door -->
+    <rect x="230" y="180" width="100" height="120" rx="6" fill="#10b981" fill-opacity="0.3"/>
+    <!-- windows -->
+    <rect x="40" y="150" width="150" height="110" rx="6" fill="#34d399" fill-opacity="0.15"/>
+    <rect x="370" y="150" width="150" height="110" rx="6" fill="#34d399" fill-opacity="0.15"/>
+    <text x="280" y="45" font-family="Inter,sans-serif" font-size="30" font-weight="700" fill="#34d399" text-anchor="middle">SHOPPING HUB</text>
+  </g>
+
+  <!-- cart -->
+  <g transform="translate(830 250)" stroke="url(#ac2)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 0 L40 0 L80 160 L240 160 L270 50 L60 50"/>
+    <circle cx="100" cy="210" r="20" fill="#34d399" stroke="none"/>
+    <circle cx="215" cy="210" r="20" fill="#34d399" stroke="none"/>
+  </g>
+  <!-- delivery pin -->
+  <g transform="translate(1080 230)">
+    <path d="M50 0 C 80 0 100 22 100 52 C 100 95 50 140 50 140 C 50 140 0 95 0 52 C 0 22 20 0 50 0 Z" fill="url(#ac2)"/>
+    <circle cx="50" cy="50" r="20" fill="#0a0f0d"/>
+  </g>
+
+  <text x="80" y="600" font-family="Inter,sans-serif" font-size="64" font-weight="800" fill="#ffffff">Side Quest</text>
+  <text x="82" y="645" font-family="monospace" font-size="24" fill="#34d399">Shopping hub + on-demand delivery · Next.js</text>
+</svg>

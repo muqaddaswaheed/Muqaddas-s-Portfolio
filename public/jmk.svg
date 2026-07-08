@@ -1,0 +1,57 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1210"/><stop offset="1" stop-color="#0a0f0d"/>
+    </linearGradient>
+    <linearGradient id="ac3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <radialGradient id="gl3" cx="0.5" cy="0.25" r="0.75">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.22"/><stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg3)"/>
+  <rect width="1280" height="720" fill="url(#gl3)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04"><path d="M0 180H1280M0 360H1280M0 540H1280M320 0V720M640 0V720M960 0V720"/></g>
+
+  <rect x="80" y="70" width="1120" height="52" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <circle cx="112" cy="96" r="6" fill="#ef4444" fill-opacity="0.6"/><circle cx="134" cy="96" r="6" fill="#f59e0b" fill-opacity="0.6"/><circle cx="156" cy="96" r="6" fill="#10b981" fill-opacity="0.7"/>
+  <rect x="200" y="84" width="900" height="24" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <text x="230" y="101" font-family="monospace" font-size="15" fill="#34d399">jmk-institute.com</text>
+
+  <!-- mosque / institute silhouette -->
+  <g transform="translate(440 175)" fill="url(#ac3)">
+    <!-- central dome -->
+    <path d="M200 120 C 200 60 240 20 300 20 C 360 20 400 60 400 120 L400 130 L200 130 Z" fill-opacity="0.85"/>
+    <!-- finial -->
+    <path d="M300 20 L300 0 M290 8 L310 8" stroke="#34d399" stroke-width="6"/>
+    <!-- main body -->
+    <rect x="180" y="130" width="240" height="180" fill="#ffffff" fill-opacity="0.06"/>
+    <!-- arched door -->
+    <path d="M270 310 L270 220 C 270 190 330 190 330 220 L330 310 Z" fill="url(#ac3)" fill-opacity="0.6"/>
+    <!-- side arches -->
+    <path d="M200 310 L200 250 C 200 230 235 230 235 250 L235 310 Z" fill="#34d399" fill-opacity="0.25"/>
+    <path d="M365 310 L365 250 C 365 230 400 230 400 250 L400 310 Z" fill="#34d399" fill-opacity="0.25"/>
+    <!-- minarets -->
+    <g fill="#10b981" fill-opacity="0.5">
+      <rect x="120" y="120" width="34" height="190"/>
+      <path d="M120 120 C 120 96 154 96 154 120 Z"/>
+      <rect x="446" y="120" width="34" height="190"/>
+      <path d="M446 120 C 446 96 480 96 480 120 Z"/>
+    </g>
+  </g>
+
+  <!-- crescent + book -->
+  <g transform="translate(150 250)">
+    <path d="M60 0 A 60 60 0 1 0 60 120 A 46 60 0 1 1 60 0 Z" fill="#34d399" fill-opacity="0.7"/>
+  </g>
+  <g transform="translate(980 300)">
+    <path d="M0 0 L90 0 L90 110 L0 110 Z" fill="#ffffff" fill-opacity="0.08"/>
+    <path d="M90 0 L180 0 L180 110 L90 110 Z" fill="#ffffff" fill-opacity="0.06"/>
+    <path d="M90 0 L90 110" stroke="#34d399" stroke-width="4"/>
+    <g stroke="#34d399" stroke-opacity="0.5" stroke-width="3"><path d="M15 30H70M15 50H70M15 70H60M110 30H165M110 50H165M110 70H155"/></g>
+  </g>
+
+  <text x="80" y="600" font-family="Inter,sans-serif" font-size="64" font-weight="800" fill="#ffffff">JMK Institute</text>
+  <text x="82" y="645" font-family="monospace" font-size="24" fill="#34d399">Islamic teaching platform · Next.js</text>
+</svg>

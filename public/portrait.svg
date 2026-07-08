@@ -1,0 +1,101 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b100e"/><stop offset="1" stop-color="#0e1412"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.44" r="0.55">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.30"/><stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0c1a0"/><stop offset="1" stop-color="#e0a67e"/>
+    </linearGradient>
+    <linearGradient id="hijab" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#155e49"/><stop offset="1" stop-color="#0a2c22"/>
+    </linearGradient>
+    <linearGradient id="hijabHi" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f7a5f"/><stop offset="1" stop-color="#0f4635"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="collar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e5e7eb"/><stop offset="1" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#halo)"/>
+
+  <!-- soft grid + glyphs -->
+  <g stroke="#ffffff" stroke-opacity="0.035" stroke-width="1">
+    <path d="M0 250 H800 M0 500 H800 M0 750 H800 M200 0 V1000 M400 0 V1000 M600 0 V1000"/>
+  </g>
+  <g font-family="monospace" fill="#10b981" fill-opacity="0.14" font-size="42">
+    <text x="110" y="210">&lt;/&gt;</text><text x="628" y="300">{ }</text>
+    <text x="120" y="850">const</text><text x="620" y="840">=&gt;</text>
+  </g>
+
+  <!-- halo rings -->
+  <circle cx="400" cy="452" r="288" fill="none" stroke="url(#ring)" stroke-width="3" stroke-opacity="0.35"/>
+  <circle cx="400" cy="452" r="252" fill="#10b981" fill-opacity="0.05"/>
+
+  <!-- ===== character bust ===== -->
+  <!-- shoulders / top -->
+  <path d="M182 1000 C 205 812 300 742 400 742 C 500 742 595 812 618 1000 Z" fill="url(#hijabHi)"/>
+  <!-- collar / shirt -->
+  <path d="M330 760 L400 812 L470 760 L470 800 L330 800 Z" fill="url(#collar)"/>
+  <path d="M400 760 L400 812" stroke="#94a3b8" stroke-width="3"/>
+
+  <!-- neck -->
+  <path d="M362 660 h76 v70 c0 26 -76 26 -76 0 Z" fill="url(#skin)"/>
+  <path d="M362 668 c 22 26 54 26 76 0 v18 c -22 22 -54 22 -76 0 Z" fill="#000" fill-opacity="0.12"/>
+
+  <!-- hijab back drape -->
+  <path d="M214 520 C 214 350 300 262 400 262 C 500 262 586 350 586 520 C 586 596 552 648 516 686 L 516 566 C 516 420 466 372 400 372 C 334 372 284 420 284 566 L 284 686 C 248 648 214 596 214 520 Z" fill="url(#hijab)"/>
+  <!-- fold highlights -->
+  <path d="M250 520 C 258 430 300 380 340 360" stroke="#2a9c78" stroke-opacity="0.5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M550 520 C 542 430 500 380 460 360" stroke="#0c3a2c" stroke-opacity="0.6" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- face -->
+  <path d="M312 496 C 312 592 352 650 400 650 C 448 650 488 592 488 496 C 488 424 452 386 400 386 C 348 386 312 424 312 496 Z" fill="url(#skin)"/>
+  <!-- face soft shadow near hijab -->
+  <path d="M312 496 C 312 452 330 416 360 400 C 336 430 330 470 336 500 Z" fill="#000" fill-opacity="0.06"/>
+
+  <!-- blush -->
+  <ellipse cx="352" cy="546" rx="20" ry="14" fill="#e0916a" fill-opacity="0.4"/>
+  <ellipse cx="448" cy="546" rx="20" ry="14" fill="#e0916a" fill-opacity="0.4"/>
+
+  <!-- brows -->
+  <g stroke="#3a2a22" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M338 474 C 350 464 374 464 388 472"/>
+    <path d="M412 472 C 426 464 450 464 462 474"/>
+  </g>
+  <!-- eyes -->
+  <g>
+    <ellipse cx="366" cy="500" rx="15" ry="18" fill="#fff"/>
+    <ellipse cx="434" cy="500" rx="15" ry="18" fill="#fff"/>
+    <circle cx="368" cy="502" r="9" fill="#3a2a22"/>
+    <circle cx="436" cy="502" r="9" fill="#3a2a22"/>
+    <circle cx="371" cy="498" r="3" fill="#fff"/>
+    <circle cx="439" cy="498" r="3" fill="#fff"/>
+  </g>
+  <!-- lashes -->
+  <g stroke="#3a2a22" stroke-width="3" stroke-linecap="round">
+    <path d="M351 490 l-8 -5"/><path d="M449 490 l8 -5"/>
+  </g>
+  <!-- nose -->
+  <path d="M400 512 C 396 528 393 540 400 548 C 407 540 404 528 400 512 Z" fill="#d89772" fill-opacity="0.6"/>
+  <!-- lips -->
+  <path d="M378 578 C 390 590 410 590 422 578 C 414 596 386 596 378 578 Z" fill="#c56b57"/>
+  <path d="M378 578 C 392 574 408 574 422 578" stroke="#a8503f" stroke-width="2" fill="none"/>
+
+  <!-- hijab front frame (over cheeks/forehead) -->
+  <path d="M284 566 C 284 420 334 372 400 372 C 466 372 516 420 516 566 L 516 744 L 284 744 Z
+           M312 496 C 312 440 348 402 400 402 C 452 402 488 440 488 496 C 488 442 458 414 400 414 C 342 414 312 442 312 496 Z"
+        fill="url(#hijab)" fill-rule="evenodd"/>
+  <path d="M300 430 C 340 396 460 396 500 430" stroke="#2a9c78" stroke-opacity="0.35" stroke-width="4" fill="none"/>
+
+  <!-- hijab pin -->
+  <circle cx="320" cy="628" r="8" fill="#34d399"/>
+  <circle cx="320" cy="628" r="16" fill="none" stroke="#34d399" stroke-opacity="0.45" stroke-width="2"/>
+</svg>

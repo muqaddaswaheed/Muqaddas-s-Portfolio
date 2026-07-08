@@ -1,0 +1,52 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1210"/><stop offset="1" stop-color="#0a0f0d"/>
+    </linearGradient>
+    <linearGradient id="ac" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <radialGradient id="gl" cx="0.7" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.22"/><stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#gl)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04"><path d="M0 180H1280M0 360H1280M0 540H1280M320 0V720M640 0V720M960 0V720"/></g>
+
+  <!-- browser bar -->
+  <rect x="80" y="70" width="1120" height="52" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <circle cx="112" cy="96" r="6" fill="#ef4444" fill-opacity="0.6"/><circle cx="134" cy="96" r="6" fill="#f59e0b" fill-opacity="0.6"/><circle cx="156" cy="96" r="6" fill="#10b981" fill-opacity="0.7"/>
+  <rect x="200" y="84" width="900" height="24" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+  <text x="230" y="101" font-family="monospace" font-size="15" fill="#34d399">aurawear.com</text>
+
+  <!-- hanger + garments -->
+  <g transform="translate(250 210)">
+    <!-- dress -->
+    <path d="M60 40 L100 40 L120 90 L100 100 L100 240 L60 240 L60 100 L40 90 Z" fill="url(#ac)" fill-opacity="0.85"/>
+    <circle cx="80" cy="30" r="14" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+    <!-- shirt -->
+    <g transform="translate(180 0)">
+      <path d="M40 40 L120 40 L150 80 L130 100 L120 100 L120 240 L40 240 L40 100 L30 100 L10 80 Z" fill="#ffffff" fill-opacity="0.12"/>
+      <circle cx="80" cy="30" r="14" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+    </g>
+    <!-- coat -->
+    <g transform="translate(390 0)">
+      <path d="M40 40 L120 40 L150 90 L130 110 L130 250 L30 250 L30 110 L10 90 Z" fill="#10b981" fill-opacity="0.3"/>
+      <path d="M80 40 L80 250" stroke="#0a0f0d" stroke-width="4"/>
+      <circle cx="80" cy="30" r="14" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- price tag -->
+  <g transform="translate(940 250)">
+    <path d="M0 30 L60 0 L200 0 L200 120 L60 120 L0 90 Z" fill="url(#ac)"/>
+    <circle cx="40" cy="60" r="10" fill="#0a0f0d"/>
+    <text x="90" y="55" font-family="Inter,sans-serif" font-size="26" font-weight="700" fill="#0a0f0d">PREMIUM</text>
+    <text x="90" y="90" font-family="Inter,sans-serif" font-size="20" fill="#0a0f0d" fill-opacity="0.8">Fashion Store</text>
+  </g>
+
+  <!-- title -->
+  <text x="80" y="600" font-family="Inter,sans-serif" font-size="64" font-weight="800" fill="#ffffff">AuraWear</text>
+  <text x="82" y="645" font-family="monospace" font-size="24" fill="#34d399">Premium fashion e-commerce · Next.js</text>
+</svg>
