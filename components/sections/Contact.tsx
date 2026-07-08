@@ -78,6 +78,16 @@ export default function Contact() {
 
             {/* Form side */}
             <div className="p-8 md:p-10">
+              <div className="mb-8">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald/20 bg-emerald/5 px-4 py-1.5 text-xs text-emerald">
+                  <Send className="h-3.5 w-3.5" />
+                  Send a message
+                </div>
+                <h3 className="mt-5 text-2xl font-bold text-white">Let&apos;s work together</h3>
+                <p className="mt-2 text-white/55">
+                  Fill in the form and I&apos;ll get back to you shortly.
+                </p>
+              </div>
               {sent ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
