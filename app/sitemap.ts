@@ -3,11 +3,11 @@ import { site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const sections = ["", "#about", "#skills", "#projects", "#experience", "#services", "#contact"];
-  return sections.map((s) => ({
-    url: `${site.url}/${s}`,
+  const routes = ["", "about", "skills", "projects", "experience", "services", "contact"];
+  return routes.map((r) => ({
+    url: `${site.url}/${r}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: s === "" ? 1 : 0.7,
+    priority: r === "" ? 1 : 0.7,
   }));
 }

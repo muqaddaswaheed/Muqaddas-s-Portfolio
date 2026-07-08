@@ -6,6 +6,8 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import BackToTop from "@/components/ui/BackToTop";
+import Navbar from "@/components/sections/Navbar";
+import Footer from "@/components/sections/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
@@ -74,7 +76,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LoadingScreen />
         <ScrollProgress />
         <CustomCursor />
+        <Navbar />
         {children}
+        <Footer />
         <BackToTop />
       </body>
     </html>

@@ -5,12 +5,12 @@ import { Github, Linkedin, Mail, Heart } from "lucide-react";
 import { site } from "@/data/site";
 
 const nav = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socials = [
@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="container-max">
         <div className="flex flex-col items-center justify-between gap-10 md:flex-row md:items-start">
           <div className="max-w-sm text-center md:text-left">
-            <Link href="#home" className="inline-flex items-center gap-2">
+            <Link href="/" className="inline-flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-emerald font-mono text-sm font-bold text-ink-950">
                 M
               </span>

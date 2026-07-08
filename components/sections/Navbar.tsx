@@ -2,23 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import CommandPalette from "@/components/ui/CommandPalette";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -39,7 +42,7 @@ export default function Navbar() {
           scrolled ? "glass-strong shadow-lg" : "border border-transparent"
         )}
       >
-        <Link href="#home" className="group flex items-center gap-2">
+        <Link href="/" className="group flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald font-mono text-sm font-bold text-ink-950">
             M
           </span>
@@ -49,21 +52,34 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-3.5 py-1.5 text-sm text-white/60 transition-colors hover:bg-white/5 hover:text-white"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "relative rounded-full px-3.5 py-1.5 text-sm transition-colors",
+                  active ? "text-emerald" : "text-white/60 hover:bg-white/5 hover:text-white"
+                )}
+              >
+                {l.label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 -z-10 rounded-full bg-emerald/10 ring-1 ring-emerald/30"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-3">
           <CommandPalette />
           <Link
-            href="#contact"
+            href="/contact"
             className="hidden rounded-full bg-emerald px-4 py-1.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-emerald-soft sm:inline-flex"
           >
             Let&apos;s talk

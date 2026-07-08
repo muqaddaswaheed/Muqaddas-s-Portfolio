@@ -87,10 +87,10 @@ export default function Hero() {
             <MagneticButton href={site.resume} external download variant="primary">
               <FileDown className="h-4 w-4" /> Download CV
             </MagneticButton>
-            <MagneticButton href="#projects" variant="outline">
+            <MagneticButton href="/projects" variant="outline">
               View Projects <ArrowRight className="h-4 w-4" />
             </MagneticButton>
-            <MagneticButton href="#contact" variant="ghost">
+            <MagneticButton href="/contact" variant="ghost">
               Contact Me
             </MagneticButton>
           </motion.div>
@@ -163,7 +163,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#about"
+        href="/about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}

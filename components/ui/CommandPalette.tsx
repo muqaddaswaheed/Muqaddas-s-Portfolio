@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Search,
@@ -21,6 +22,7 @@ type Item = { label: string; icon: any; action: () => void; hint?: string };
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -34,18 +36,19 @@ export default function CommandPalette() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const go = (id: string) => () => {
+  const go = (path: string) => () => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    router.push(path);
   };
 
   const items: Item[] = [
-    { label: "Home", icon: Home, action: go("home") },
-    { label: "About", icon: User, action: go("about") },
-    { label: "Skills", icon: Cpu, action: go("skills") },
-    { label: "Projects", icon: FolderGit2, action: go("projects") },
-    { label: "Experience", icon: Briefcase, action: go("experience") },
-    { label: "Contact", icon: Mail, action: go("contact") },
+    { label: "Home", icon: Home, action: go("/") },
+    { label: "About", icon: User, action: go("/about") },
+    { label: "Skills", icon: Cpu, action: go("/skills") },
+    { label: "Projects", icon: FolderGit2, action: go("/projects") },
+    { label: "Experience", icon: Briefcase, action: go("/experience") },
+    { label: "Services", icon: FolderGit2, action: go("/services") },
+    { label: "Contact", icon: Mail, action: go("/contact") },
     { label: "Download CV", icon: FileDown, hint: "PDF", action: () => window.open(site.resume, "_blank") },
     { label: "GitHub", icon: Github, hint: "External", action: () => window.open(site.socials.github, "_blank") },
     { label: "LinkedIn", icon: Linkedin, hint: "External", action: () => window.open(site.socials.linkedin, "_blank") },
