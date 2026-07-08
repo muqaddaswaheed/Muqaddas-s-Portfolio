@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import CommandPalette from "@/components/ui/CommandPalette";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -42,13 +43,8 @@ export default function Navbar() {
           scrolled ? "glass-strong shadow-lg" : "border border-transparent"
         )}
       >
-        <Link href="/" className="group flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald font-mono text-sm font-bold text-ink-950">
-            M
-          </span>
-          <span className="font-semibold tracking-tight">
-            Muqaddas<span className="text-emerald">.</span>
-          </span>
+        <Link href="/" className="group flex items-center">
+          <Logo />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">

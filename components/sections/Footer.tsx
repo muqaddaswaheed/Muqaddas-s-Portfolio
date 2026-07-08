@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import Logo from "@/components/ui/Logo";
 import { site } from "@/data/site";
 
 const nav = [
@@ -26,13 +27,8 @@ export default function Footer() {
       <div className="container-max">
         <div className="flex flex-col items-center justify-between gap-10 md:flex-row md:items-start">
           <div className="max-w-sm text-center md:text-left">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-emerald font-mono text-sm font-bold text-ink-950">
-                M
-              </span>
-              <span className="text-lg font-semibold">
-                Muqaddas<span className="text-emerald">.</span>
-              </span>
+            <Link href="/" className="inline-flex items-center">
+              <Logo />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/45">
               Full Stack MERN Developer building scalable, modern web applications from Pakistan.

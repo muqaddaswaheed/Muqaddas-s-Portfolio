@@ -121,9 +121,9 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
-          className="relative mx-auto hidden w-full max-w-md lg:block"
+          className="relative mx-auto hidden w-full max-w-[300px] lg:block"
         >
-          <div className="relative aspect-[4/5] w-full">
+          <div className="relative aspect-square w-full">
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-emerald/30 via-transparent to-transparent blur-2xl" />
             <div className="glass-strong relative h-full w-full overflow-hidden rounded-[2rem]">
               <Image
