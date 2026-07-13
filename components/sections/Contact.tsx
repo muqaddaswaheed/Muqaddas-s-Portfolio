@@ -56,12 +56,12 @@ export default function Contact() {
                 {contactItems.map((c) => {
                   const inner = (
                     <div className="glass card-hover flex items-center gap-4 rounded-2xl p-4">
-                      <span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald/10 text-emerald">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald/10 text-emerald">
                         <c.icon className="h-5 w-5" />
                       </span>
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <p className="text-xs text-white/40">{c.label}</p>
-                        <p className="text-sm font-medium text-white">{c.value}</p>
+                        <p className="break-all text-sm font-medium text-white">{c.value}</p>
                       </div>
                     </div>
                   );

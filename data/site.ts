@@ -10,7 +10,7 @@ export const site = {
   resume: "/Muqaddas_Waheed_CV.pdf",
   socials: {
     github: "https://github.com/muqaddaswaheed",
-    linkedin: "https://linkedin.com/in/muqaddas-waheed",
+    linkedin: "https://pk.linkedin.com/in/muqaddas-waheed-5aa064213",
     email: "mailto:muqaddaswaheed0@gmail.com",
   },
   roles: [
