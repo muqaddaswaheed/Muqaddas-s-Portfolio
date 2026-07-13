@@ -77,7 +77,7 @@ export const projects: Project[] = [
       "An on-demand water logistics application modeled after ride-sharing frameworks, with split Owner/Administrator roles, real-time fulfillment pipelines, and automated synchronization engines.",
     status: "Live",
     featured: true,
-    image: "/aquaride.svg",
+    image: "/aquaride.png",
     stack: ["Next.js", "TypeScript", "Firebase", "Redux Toolkit"],
     features: [
       "Ride-hailing style on-demand water delivery",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     description:
       "A full-stack NGO platform with modular portals for scholarship applications, real-time grant processing, and scheduled consultations — with role-based access, JWT auth, and dynamic uploads.",
     status: "Production",
-    image: "/tadbeer.svg",
+    image: "/tadbeer.png",
     stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Multer"],
     features: [
       "Scholarship application & grant processing portals",
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     description:
       "A dynamic 3D e-commerce platform where users design, customize, and order top-wear apparel with real-time previews — built as my Final Year Project.",
     status: "Live",
-    image: "/digital-eve.svg",
+    image: "/digital-eve.png",
     stack: ["Next.js", "Clerk.js", "Tailwind CSS", "Three.js", "Node.js"],
     features: [
       "Interactive 3D apparel customization",

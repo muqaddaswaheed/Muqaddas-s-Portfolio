@@ -61,7 +61,7 @@ export default function Contact() {
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-xs text-white/40">{c.label}</p>
-                        <p className="break-all text-sm font-medium text-white">{c.value}</p>
+                        <p className="truncate text-[13px] font-medium text-white">{c.value}</p>
                       </div>
                     </div>
                   );
