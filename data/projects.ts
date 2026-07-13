@@ -24,7 +24,7 @@ export const projects: Project[] = [
     tagline: "Boxing therapy & coaching platform",
     description:
       "A boxing-therapy platform where clients book solo, duo, or trio sessions with automatic discount tiers, backed by a dedicated coach panel to manage bookings, availability, and pricing in real time.",
-    status: "Production",
+    status: "Live",
     featured: true,
     image: "/sosbox-therapeutique.png",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "REST APIs"],
@@ -41,35 +41,8 @@ export const projects: Project[] = [
       "Built a rule-based discount engine tied to session size and a coach dashboard with optimistic UI updates and server-side slot locking to prevent double-bookings.",
     architecture:
       "Next.js App Router frontend with typed REST endpoints, server actions for booking mutations, and a role-separated coach admin panel.",
-    live: "https://sosboxetherapeutique.com",
+    live: "https://boxingtherapiepremium.ch",
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-  },
-  {
-    slug: "aurawear",
-    title: "AuraWear",
-    tagline: "Premium fashion e-commerce",
-    description:
-      "A production-grade e-commerce store for a premium fashion brand with fluid content architecture, dynamic catalog sorting, and seamless checkout flows with real-time inventory tracking.",
-    status: "Production",
-    featured: true,
-    image: "/aurawear.svg",
-    stack: ["Next.js", "Tailwind CSS", "Node.js", "Redux Toolkit"],
-    features: [
-      "Dynamic catalog with multi-criteria sorting & filtering",
-      "Seamless multi-step checkout flow",
-      "Real-time inventory tracking",
-      "Redux Toolkit state modules with client-server sync",
-      "Responsive layouts using Next.js layout structures",
-    ],
-    challenges:
-      "Keeping cart, catalog, and inventory perfectly in sync across a fast, image-heavy storefront without janky re-renders.",
-    solutions:
-      "Normalized Redux stores with memoized selectors and server-synced inventory endpoints, plus optimized image loading for buttery browsing.",
-    architecture:
-      "Next.js layout-driven pages, Redux Toolkit slices, and REST sync endpoints for checkout and inventory.",
-    live: "https://aurawear-fe.vercel.app/",
-    github: "https://github.com/muqaddaswaheed",
-    gradient: "from-emerald-500/20 via-lime-500/10 to-transparent",
   },
   {
     slug: "aquaride",
@@ -103,7 +76,8 @@ export const projects: Project[] = [
     tagline: "NGO community resource management",
     description:
       "A full-stack NGO platform with modular portals for scholarship applications, real-time grant processing, and scheduled consultations — with role-based access, JWT auth, and dynamic uploads.",
-    status: "Production",
+    status: "Live",
+    featured: true,
     image: "/tadbeer.png",
     stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Multer"],
     features: [
@@ -121,81 +95,6 @@ export const projects: Project[] = [
       "MERN stack — React frontend, Express REST API, MongoDB, JWT middleware, Redux Toolkit stores.",
     live: "https://tadbeerresource.com",
     gradient: "from-emerald-500/20 via-green-500/10 to-transparent",
-  },
-  {
-    slug: "side-quest",
-    title: "Side Quest",
-    tagline: "E-commerce hub with on-demand delivery",
-    description:
-      "A shopping-center hub where clients buy groceries and instantly match with local delivery drivers through an active on-demand fulfillment pipeline, with optimized routing and secure state paths.",
-    status: "Development",
-    image: "/side-quest.svg",
-    stack: ["Next.js", "Tailwind CSS", "TypeScript", "Redux Toolkit"],
-    features: [
-      "Product curation & procurement workflows",
-      "On-demand driver matching",
-      "Active fulfillment pipeline",
-      "Optimized Next.js routing layers",
-      "Secure Redux Toolkit state paths",
-    ],
-    challenges:
-      "Matching buyers with available drivers in real time while keeping the shopping experience fast.",
-    solutions:
-      "A matching pipeline layered over optimized routing, with Redux-managed order and driver state.",
-    architecture:
-      "Next.js App Router, TypeScript, Redux Toolkit, modular routing layers.",
-    live: "https://sidequest-roan-one.vercel.app",
-    gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-  },
-  {
-    slug: "digital-eve",
-    title: "Digital Eve",
-    tagline: "3D custom apparel commerce (FYP)",
-    description:
-      "A dynamic 3D e-commerce platform where users design, customize, and order top-wear apparel with real-time previews — built as my Final Year Project.",
-    status: "Live",
-    image: "/digital-eve.png",
-    stack: ["Next.js", "Clerk.js", "Tailwind CSS", "Three.js", "Node.js"],
-    features: [
-      "Interactive 3D apparel customization",
-      "Real-time design previews",
-      "Clerk-powered authentication",
-      "Three.js rendering pipeline",
-      "Order & checkout flow",
-    ],
-    challenges:
-      "Rendering performant, interactive 3D previews in the browser without hurting load times.",
-    solutions:
-      "Three.js scene optimizations, lazy-loaded assets, and Clerk-managed auth for a smooth custom-order flow.",
-    architecture:
-      "Next.js + Three.js frontend, Clerk auth, Node.js backend.",
-    live: "https://digital-eve.vercel.app",
-    gradient: "from-emerald-500/20 via-purple-500/10 to-transparent",
-  },
-  {
-    slug: "jmk",
-    title: "JMK — Islamic Teaching Institute",
-    tagline: "Production platform for an education institute",
-    description:
-      "A production-grade web platform for an Islamic teaching institute with clean user pathways, responsive layouts, and dynamic resource handling for students and administrators.",
-    status: "Production",
-    image: "/jmk.svg",
-    stack: ["Next.js", "Tailwind CSS", "Redux Toolkit"],
-    features: [
-      "Clean student & admin user pathways",
-      "Dynamic resource handling",
-      "Streamlined responsive layouts",
-      "Optimized content access",
-      "Production deployment",
-    ],
-    challenges:
-      "Organizing large amounts of teaching content into intuitive, fast-loading pathways.",
-    solutions:
-      "Structured resource handling with Next.js and Redux Toolkit for clean, responsive content delivery.",
-    architecture:
-      "Next.js App Router, Tailwind CSS, Redux Toolkit.",
-    github: "https://github.com/muqaddaswaheed",
-    gradient: "from-emerald-500/20 via-amber-500/10 to-transparent",
   },
   {
     slug: "saas-chat",
@@ -223,5 +122,106 @@ export const projects: Project[] = [
     live: "https://saas-chat-application.onrender.com",
     github: "https://github.com/muqaddaswaheed",
     gradient: "from-emerald-500/20 via-cyan-500/10 to-transparent",
+  },
+  {
+    slug: "digital-eve",
+    title: "Digital Eve",
+    tagline: "3D custom apparel commerce (FYP)",
+    description:
+      "A dynamic 3D e-commerce platform where users design, customize, and order top-wear apparel with real-time previews — built as my Final Year Project.",
+    status: "Live",
+    image: "/digital-eve.png",
+    stack: ["Next.js", "Clerk.js", "Tailwind CSS", "Three.js", "Node.js"],
+    features: [
+      "Interactive 3D apparel customization",
+      "Real-time design previews",
+      "Clerk-powered authentication",
+      "Three.js rendering pipeline",
+      "Order & checkout flow",
+    ],
+    challenges:
+      "Rendering performant, interactive 3D previews in the browser without hurting load times.",
+    solutions:
+      "Three.js scene optimizations, lazy-loaded assets, and Clerk-managed auth for a smooth custom-order flow.",
+    architecture:
+      "Next.js + Three.js frontend, Clerk auth, Node.js backend.",
+    live: "https://digital-eve.vercel.app",
+    gradient: "from-emerald-500/20 via-purple-500/10 to-transparent",
+  },
+  {
+    slug: "aurawear",
+    title: "AuraWear",
+    tagline: "Premium fashion e-commerce",
+    description:
+      "A production-grade e-commerce store for a premium fashion brand with fluid content architecture, dynamic catalog sorting, and seamless checkout flows with real-time inventory tracking.",
+    status: "Live",
+    image: "/aurawear.svg",
+    stack: ["Next.js", "Tailwind CSS", "Node.js", "Redux Toolkit"],
+    features: [
+      "Dynamic catalog with multi-criteria sorting & filtering",
+      "Seamless multi-step checkout flow",
+      "Real-time inventory tracking",
+      "Redux Toolkit state modules with client-server sync",
+      "Responsive layouts using Next.js layout structures",
+    ],
+    challenges:
+      "Keeping cart, catalog, and inventory perfectly in sync across a fast, image-heavy storefront without janky re-renders.",
+    solutions:
+      "Normalized Redux stores with memoized selectors and server-synced inventory endpoints, plus optimized image loading for buttery browsing.",
+    architecture:
+      "Next.js layout-driven pages, Redux Toolkit slices, and REST sync endpoints for checkout and inventory.",
+    live: "https://aurawear-fe.vercel.app/",
+    github: "https://github.com/muqaddaswaheed",
+    gradient: "from-emerald-500/20 via-lime-500/10 to-transparent",
+  },
+  {
+    slug: "side-quest",
+    title: "Side Quest",
+    tagline: "E-commerce hub with on-demand delivery",
+    description:
+      "A shopping-center hub where clients buy groceries and instantly match with local delivery drivers through an active on-demand fulfillment pipeline, with optimized routing and secure state paths.",
+    status: "Development",
+    image: "/side-quest.svg",
+    stack: ["Next.js", "Tailwind CSS", "TypeScript", "Redux Toolkit"],
+    features: [
+      "Product curation & procurement workflows",
+      "On-demand driver matching",
+      "Active fulfillment pipeline",
+      "Optimized Next.js routing layers",
+      "Secure Redux Toolkit state paths",
+    ],
+    challenges:
+      "Matching buyers with available drivers in real time while keeping the shopping experience fast.",
+    solutions:
+      "A matching pipeline layered over optimized routing, with Redux-managed order and driver state.",
+    architecture:
+      "Next.js App Router, TypeScript, Redux Toolkit, modular routing layers.",
+    live: "https://sidequest-roan-one.vercel.app",
+    gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
+  },
+  {
+    slug: "jmk",
+    title: "JMK — Islamic Teaching Institute",
+    tagline: "Production platform for an education institute",
+    description:
+      "A production-grade web platform for an Islamic teaching institute with clean user pathways, responsive layouts, and dynamic resource handling for students and administrators.",
+    status: "Production",
+    image: "/jmk.svg",
+    stack: ["Next.js", "Tailwind CSS", "Redux Toolkit"],
+    features: [
+      "Clean student & admin user pathways",
+      "Dynamic resource handling",
+      "Streamlined responsive layouts",
+      "Optimized content access",
+      "Production deployment",
+    ],
+    challenges:
+      "Organizing large amounts of teaching content into intuitive, fast-loading pathways.",
+    solutions:
+      "Structured resource handling with Next.js and Redux Toolkit for clean, responsive content delivery.",
+    architecture:
+      "Next.js App Router, Tailwind CSS, Redux Toolkit.",
+    github: "https://github.com/muqaddaswaheed",
+    gradient: "from-emerald-500/20 via-amber-500/10 to-transparent",
   },
 ];
