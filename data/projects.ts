@@ -67,6 +67,8 @@ export const projects: Project[] = [
       "Normalized Redux stores with memoized selectors and server-synced inventory endpoints, plus optimized image loading for buttery browsing.",
     architecture:
       "Next.js layout-driven pages, Redux Toolkit slices, and REST sync endpoints for checkout and inventory.",
+    live: "https://aurawear-fe.vercel.app/",
+    github: "https://github.com/muqaddaswaheed",
     gradient: "from-emerald-500/20 via-lime-500/10 to-transparent",
   },
   {
@@ -142,6 +144,7 @@ export const projects: Project[] = [
       "A matching pipeline layered over optimized routing, with Redux-managed order and driver state.",
     architecture:
       "Next.js App Router, TypeScript, Redux Toolkit, modular routing layers.",
+    live: "https://sidequest-roan-one.vercel.app",
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
   },
   {
@@ -191,6 +194,34 @@ export const projects: Project[] = [
       "Structured resource handling with Next.js and Redux Toolkit for clean, responsive content delivery.",
     architecture:
       "Next.js App Router, Tailwind CSS, Redux Toolkit.",
+    github: "https://github.com/muqaddaswaheed",
     gradient: "from-emerald-500/20 via-amber-500/10 to-transparent",
+  },
+  {
+    slug: "saas-chat",
+    title: "SaaS Chat",
+    tagline: "Real-time chat application",
+    description:
+      "A real-time SaaS chat application with instant messaging, live typing indicators, presence, and multi-room conversations — built for fast, reliable communication over WebSockets.",
+    status: "Live",
+    featured: true,
+    image: "/saas-chat.svg",
+    stack: ["Next.js", "React.js", "Node.js", "Socket.io", "MongoDB", "Tailwind CSS"],
+    features: [
+      "Instant real-time messaging over WebSockets",
+      "Live typing indicators & online presence",
+      "Multi-room / channel conversations",
+      "Persistent message history in MongoDB",
+      "Responsive, modern chat UI",
+    ],
+    challenges:
+      "Delivering low-latency, ordered message delivery across many concurrent users without dropped or duplicated events.",
+    solutions:
+      "A Socket.io event layer with room-scoped broadcasting, optimistic UI updates, and MongoDB-backed persistence for reliable history and reconnection.",
+    architecture:
+      "Next.js/React frontend, Node.js + Socket.io real-time server, MongoDB for storage.",
+    live: "https://saas-chat-application.onrender.com",
+    github: "https://github.com/muqaddaswaheed",
+    gradient: "from-emerald-500/20 via-cyan-500/10 to-transparent",
   },
 ];
