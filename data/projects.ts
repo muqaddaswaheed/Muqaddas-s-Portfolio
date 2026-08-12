@@ -128,7 +128,7 @@ export const projects: Project[] = [
     description:
       "A production-grade e-commerce store for a premium fashion brand with fluid content architecture, dynamic catalog sorting, and seamless checkout flows with real-time inventory tracking.",
     status: "Live",
-    image: "/aurawear.svg",
+    image: "/aurawear.png",
     stack: ["Next.js", "Tailwind CSS", "Node.js", "Redux Toolkit"],
     features: [
       "Dynamic catalog with multi-criteria sorting & filtering",
@@ -154,7 +154,7 @@ export const projects: Project[] = [
     description:
       "A shopping-center hub where clients buy groceries and instantly match with local delivery drivers through an active on-demand fulfillment pipeline, with optimized routing and secure state paths.",
     status: "Development",
-    image: "/side-quest.svg",
+    image: "/side-quest.png",
     stack: ["Next.js", "Tailwind CSS", "TypeScript", "Redux Toolkit"],
     features: [
       "Product curation & procurement workflows",

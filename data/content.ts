@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Gauge,
   Puzzle,
+  CreditCard,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,16 +28,27 @@ import {
 export type Skill = { name: string; level: number; tag: string };
 export type SkillGroup = { title: string; icon: LucideIcon; skills: Skill[] };
 
+// Grouped exactly as the CV's Technical Skills section.
 export const skillGroups: SkillGroup[] = [
+  {
+    title: "Programming Languages",
+    icon: Braces,
+    skills: [
+      { name: "JavaScript", level: 95, tag: "Expert" },
+      { name: "TypeScript", level: 90, tag: "Advanced" },
+    ],
+  },
   {
     title: "Frontend",
     icon: Code2,
     skills: [
-      { name: "Next.js", level: 95, tag: "Expert" },
       { name: "React.js", level: 95, tag: "Expert" },
+      { name: "Next.js", level: 95, tag: "Expert" },
       { name: "Tailwind CSS", level: 95, tag: "Expert" },
-      { name: "ShadCN UI", level: 88, tag: "Advanced" },
       { name: "Bootstrap", level: 85, tag: "Advanced" },
+      { name: "Redux Toolkit (RTK)", level: 92, tag: "Expert" },
+      { name: "Context API", level: 88, tag: "Advanced" },
+      { name: "ShadCN", level: 88, tag: "Advanced" },
     ],
   },
   {
@@ -45,46 +57,51 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Node.js", level: 90, tag: "Advanced" },
       { name: "Express.js", level: 90, tag: "Advanced" },
-      { name: "REST APIs", level: 92, tag: "Expert" },
-      { name: "WebSockets", level: 80, tag: "Proficient" },
+      { name: "RESTful APIs", level: 92, tag: "Expert" },
+      { name: "JWT Authentication", level: 90, tag: "Advanced" },
+      { name: "Multer", level: 85, tag: "Advanced" },
       { name: "Webhooks", level: 82, tag: "Proficient" },
+      { name: "WebSockets", level: 80, tag: "Proficient" },
     ],
   },
   {
-    title: "Databases",
+    title: "Databases & ORM",
     icon: Database,
     skills: [
       { name: "MongoDB", level: 90, tag: "Advanced" },
+      { name: "PostgreSQL", level: 84, tag: "Advanced" },
+      { name: "Supabase", level: 82, tag: "Proficient" },
+      { name: "Neon", level: 78, tag: "Proficient" },
+      { name: "Prisma", level: 82, tag: "Proficient" },
       { name: "Firebase", level: 85, tag: "Advanced" },
-      { name: "Supabase", level: 80, tag: "Proficient" },
     ],
   },
   {
-    title: "State & Auth",
-    icon: Layers,
+    title: "Payments & Integrations",
+    icon: CreditCard,
     skills: [
-      { name: "Redux Toolkit", level: 92, tag: "Expert" },
-      { name: "Context API", level: 88, tag: "Advanced" },
-      { name: "JWT Auth", level: 90, tag: "Advanced" },
-      { name: "Clerk", level: 82, tag: "Proficient" },
+      { name: "Stripe", level: 84, tag: "Advanced" },
+      { name: "PayFast", level: 80, tag: "Proficient" },
     ],
   },
   {
-    title: "Languages",
-    icon: Braces,
+    title: "DevOps & Deployment",
+    icon: Rocket,
     skills: [
-      { name: "TypeScript", level: 90, tag: "Advanced" },
-      { name: "JavaScript", level: 95, tag: "Expert" },
+      { name: "Docker", level: 80, tag: "Proficient" },
+      { name: "CI/CD", level: 82, tag: "Proficient" },
+      { name: "Vercel", level: 92, tag: "Expert" },
+      { name: "Render", level: 82, tag: "Proficient" },
+      { name: "Railway", level: 80, tag: "Proficient" },
     ],
   },
   {
-    title: "Cloud & Tools",
-    icon: Cloud,
+    title: "Tools",
+    icon: Wrench,
     skills: [
-      { name: "Vercel", level: 90, tag: "Advanced" },
-      { name: "Git & GitHub", level: 92, tag: "Expert" },
+      { name: "Git", level: 92, tag: "Expert" },
+      { name: "GitHub", level: 92, tag: "Expert" },
       { name: "Postman", level: 88, tag: "Advanced" },
-      { name: "Multer", level: 85, tag: "Advanced" },
     ],
   },
 ];
@@ -198,7 +215,7 @@ export const values: Service[] = [
 /* ---------------- Stats ---------------- */
 export const stats = [
   { label: "Projects Built", value: 12, suffix: "+" },
-  { label: "Technologies", value: 20, suffix: "+" },
+  { label: "Technologies", value: 30, suffix: "+" },
   { label: "Production Deployments", value: 6, suffix: "" },
   { label: "Happy Clients", value: 8, suffix: "+" },
   { label: "Learning Hours", value: 3000, suffix: "+" },
@@ -207,7 +224,7 @@ export const stats = [
 export const heroStats = [
   { label: "Years Experience", value: 2, suffix: "+" },
   { label: "Projects Built", value: 12, suffix: "+" },
-  { label: "Technologies", value: 20, suffix: "+" },
+  { label: "Technologies", value: 30, suffix: "+" },
   { label: "Production Apps", value: 6, suffix: "" },
 ];
 
