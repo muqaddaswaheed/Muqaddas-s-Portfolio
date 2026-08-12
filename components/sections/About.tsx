@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Quote, CheckCircle2, Github, Linkedin, Mail, MapPin, FileDown } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -71,13 +70,13 @@ export default function About() {
                 ))}
               </div>
 
-              <Link
+              <a
                 href={site.resume}
-                target="_blank"
+                download
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-emerald-soft"
               >
                 <FileDown className="h-4 w-4" /> Download CV
-              </Link>
+              </a>
             </div>
           </Reveal>
 
