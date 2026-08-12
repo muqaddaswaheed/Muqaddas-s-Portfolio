@@ -97,33 +97,6 @@ export const projects: Project[] = [
     gradient: "from-emerald-500/20 via-green-500/10 to-transparent",
   },
   {
-    slug: "saas-chat",
-    title: "SaaS Chat",
-    tagline: "Real-time chat application",
-    description:
-      "A real-time SaaS chat application with instant messaging, live typing indicators, presence, and multi-room conversations — built for fast, reliable communication over WebSockets.",
-    status: "Live",
-    featured: true,
-    image: "/saas-chat.svg",
-    stack: ["Next.js", "React.js", "Node.js", "Socket.io", "MongoDB", "Tailwind CSS"],
-    features: [
-      "Instant real-time messaging over WebSockets",
-      "Live typing indicators & online presence",
-      "Multi-room / channel conversations",
-      "Persistent message history in MongoDB",
-      "Responsive, modern chat UI",
-    ],
-    challenges:
-      "Delivering low-latency, ordered message delivery across many concurrent users without dropped or duplicated events.",
-    solutions:
-      "A Socket.io event layer with room-scoped broadcasting, optimistic UI updates, and MongoDB-backed persistence for reliable history and reconnection.",
-    architecture:
-      "Next.js/React frontend, Node.js + Socket.io real-time server, MongoDB for storage.",
-    live: "https://saas-chat-application.onrender.com",
-    github: "https://github.com/muqaddaswaheed",
-    gradient: "from-emerald-500/20 via-cyan-500/10 to-transparent",
-  },
-  {
     slug: "digital-eve",
     title: "Digital Eve",
     tagline: "3D custom apparel commerce (FYP)",
@@ -196,32 +169,7 @@ export const projects: Project[] = [
       "A matching pipeline layered over optimized routing, with Redux-managed order and driver state.",
     architecture:
       "Next.js App Router, TypeScript, Redux Toolkit, modular routing layers.",
-    live: "https://sidequest-roan-one.vercel.app",
+    live: "https://sidequest-roan-one.vercel.app/storeAdmin",
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-  },
-  {
-    slug: "jmk",
-    title: "JMK — Islamic Teaching Institute",
-    tagline: "Production platform for an education institute",
-    description:
-      "A production-grade web platform for an Islamic teaching institute with clean user pathways, responsive layouts, and dynamic resource handling for students and administrators.",
-    status: "Production",
-    image: "/jmk.svg",
-    stack: ["Next.js", "Tailwind CSS", "Redux Toolkit"],
-    features: [
-      "Clean student & admin user pathways",
-      "Dynamic resource handling",
-      "Streamlined responsive layouts",
-      "Optimized content access",
-      "Production deployment",
-    ],
-    challenges:
-      "Organizing large amounts of teaching content into intuitive, fast-loading pathways.",
-    solutions:
-      "Structured resource handling with Next.js and Redux Toolkit for clean, responsive content delivery.",
-    architecture:
-      "Next.js App Router, Tailwind CSS, Redux Toolkit.",
-    github: "https://github.com/muqaddaswaheed",
-    gradient: "from-emerald-500/20 via-amber-500/10 to-transparent",
   },
 ];

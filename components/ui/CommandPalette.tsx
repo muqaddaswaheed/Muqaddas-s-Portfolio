@@ -48,6 +48,7 @@ export default function CommandPalette() {
     { label: "Projects", icon: FolderGit2, action: go("/projects") },
     { label: "Experience", icon: Briefcase, action: go("/experience") },
     { label: "Services", icon: FolderGit2, action: go("/services") },
+    { label: "Resume", icon: FileDown, action: go("/resume") },
     { label: "Contact", icon: Mail, action: go("/contact") },
     { label: "Download CV", icon: FileDown, hint: "PDF", action: () => window.open(site.resume, "_blank") },
     { label: "GitHub", icon: Github, hint: "External", action: () => window.open(site.socials.github, "_blank") },

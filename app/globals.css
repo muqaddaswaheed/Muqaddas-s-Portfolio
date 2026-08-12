@@ -84,3 +84,35 @@ body {
     transition: none !important;
   }
 }
+
+/* Print: output only the résumé sheet, clean and paper-like */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  #resume-sheet,
+  #resume-sheet * {
+    visibility: visible !important;
+  }
+  #resume-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    --tw-ring-color: transparent !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
