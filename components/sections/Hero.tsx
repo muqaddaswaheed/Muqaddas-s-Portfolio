@@ -2,9 +2,17 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, FileDown, ArrowRight, MapPin, Sparkles } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  FileDown,
+  ArrowRight,
+  CalendarDays,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
 import Aurora from "@/components/ui/Aurora";
-import Typewriter from "@/components/ui/Typewriter";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Counter from "@/components/ui/Counter";
 import { site } from "@/data/site";
@@ -14,6 +22,16 @@ const socials = [
   { icon: Linkedin, href: site.socials.linkedin, label: "LinkedIn" },
   { icon: Mail, href: site.socials.email, label: "Email" },
 ];
+
+// A real scheduler when site.booking is set, a pre-filled call request otherwise —
+// so the button always does what its label promises.
+const bookingFallback = `mailto:${site.email}?subject=${encodeURIComponent(
+  "Booking a call"
+)}&body=${encodeURIComponent(
+  "Hi Muqaddas,\n\nI'd like to book a call about a project.\n\nWhat I'm building:\nTimeline:\nTimes that work for me:\n"
+)}`;
+const bookingHref = site.booking || bookingFallback;
+const bookingIsExternal = Boolean(site.booking);
 
 export default function Hero() {
   return (
@@ -35,40 +53,61 @@ export default function Hero() {
             Available for new projects
           </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.55, duration: 0.6 }}
+            className="mt-6 font-mono text-sm uppercase tracking-[0.2em] text-emerald"
+          >
+            {site.name}
+          </motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 0.7 }}
-            className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+            className="mt-3 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
           >
-            <span className="text-gradient">Muqaddas</span>
+            <span className="text-gradient">Full Stack</span>
             <br />
-            <span className="text-gradient">Waheed</span>
+            <span className="text-gradient">MERN Developer</span>
           </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.75, duration: 0.6 }}
-            className="mt-4 flex min-h-[2rem] items-center text-xl font-medium sm:text-2xl"
-          >
-            <Typewriter words={site.roles} />
-          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.85, duration: 0.6 }}
-            className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/55"
+            transition={{ delay: 1.75, duration: 0.6 }}
+            className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-white/70 sm:text-xl"
           >
-            {site.tagline}
+            {site.pitch}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.95, duration: 0.6 }}
-            className="mt-6 flex items-center gap-4 text-sm text-white/40"
+            transition={{ delay: 1.9, duration: 0.6 }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <MagneticButton href="/contact" variant="primary">
+              Hire Me <ArrowRight className="h-4 w-4" />
+            </MagneticButton>
+            <MagneticButton
+              href={bookingHref}
+              external={bookingIsExternal}
+              variant="outline"
+            >
+              <CalendarDays className="h-4 w-4" /> Book a Call
+            </MagneticButton>
+            <MagneticButton href={site.resume} external download variant="outline">
+              <FileDown className="h-4 w-4" /> Download CV
+            </MagneticButton>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.05, duration: 0.6 }}
+            className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/40"
           >
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-emerald" /> {site.location}
@@ -79,27 +118,10 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.05, duration: 0.6 }}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
-            <MagneticButton href={site.resume} external download variant="primary">
-              <FileDown className="h-4 w-4" /> Download CV
-            </MagneticButton>
-            <MagneticButton href="/projects" variant="outline">
-              View Projects <ArrowRight className="h-4 w-4" />
-            </MagneticButton>
-            <MagneticButton href="/contact" variant="ghost">
-              Contact Me
-            </MagneticButton>
-          </motion.div>
-
-          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.2, duration: 0.6 }}
-            className="mt-8 flex items-center gap-3"
+            className="mt-6 flex items-center gap-3"
           >
             {socials.map((s) => (
               <a

@@ -4,10 +4,16 @@ export const site = {
   location: "Rawalpindi, Pakistan",
   email: "muqaddaswaheed0@gmail.com",
   url: "https://muqaddaswaheed.dev",
+  // The one line the homepage leads with — keep it concrete, not aspirational.
+  pitch:
+    "Building scalable web applications, REST APIs, Admin Panels and Payment Integrations.",
   tagline:
-    "I build scalable full-stack web applications with modern UI, robust backend architecture, and production-grade real-time systems.",
+    "Building scalable web applications, REST APIs, Admin Panels and Payment Integrations.",
   available: true,
   resume: "/Muqaddas_Waheed_CV.pdf",
+  // Paste a Cal.com / Calendly link here to make "Book a Call" open a real
+  // scheduler. Until then it falls back to the contact page.
+  booking: "",
   socials: {
     github: "https://github.com/muqaddaswaheed",
     linkedin: "https://pk.linkedin.com/in/muqaddas-waheed-5aa064213",

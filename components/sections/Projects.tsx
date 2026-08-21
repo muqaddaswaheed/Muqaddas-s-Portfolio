@@ -12,6 +12,10 @@ import {
   Lightbulb,
   Wrench,
   Cpu,
+  Target,
+  UserRound,
+  TrendingUp,
+  Lock,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -25,6 +29,43 @@ function StatusBadge({ status }: { status: Project["status"] }) {
     <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald/20 bg-emerald/10 px-2.5 py-1 text-[11px] font-medium text-emerald backdrop-blur-md">
       <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
       {status}
+    </span>
+  );
+}
+
+/** GitHub link when there's a real repo, an honest note when there isn't. */
+function RepoAction({ p, size = "sm" }: { p: Project; size?: "sm" | "md" }) {
+  const cls =
+    size === "sm"
+      ? "gap-1.5 rounded-full px-4 py-2 text-xs font-medium"
+      : "gap-2 rounded-full px-5 py-2.5 text-sm font-medium";
+  const icon = size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4";
+
+  if (p.github) {
+    return (
+      <a
+        href={p.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "inline-flex items-center border border-white/10 text-white/80 transition-colors hover:border-emerald/40 hover:text-emerald",
+          cls
+        )}
+      >
+        <Github className={icon} /> {size === "sm" ? "GitHub" : "View Code"}
+      </a>
+    );
+  }
+
+  return (
+    <span
+      title={p.repoNote}
+      className={cn(
+        "inline-flex cursor-default items-center border border-white/10 bg-white/[0.02] text-white/35",
+        cls
+      )}
+    >
+      <Lock className={icon} /> {p.repoNote ?? "Private repo"}
     </span>
   );
 }
@@ -107,7 +148,25 @@ function ProjectCard({ p, onOpen }: { p: Project; onOpen: () => void }) {
           <p className="mt-0.5 text-sm text-emerald/80">{p.tagline}</p>
         </div>
 
-        <p className="mt-3 text-sm leading-relaxed text-white/55">{p.description}</p>
+        {/* Problem → outcome, before any screenshot talk */}
+        <div className="mt-4 space-y-2.5">
+          <div className="flex items-start gap-2.5">
+            <span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-widest text-amber-400/70">
+              Problem
+            </span>
+            <p className="line-clamp-3 text-sm leading-relaxed text-white/55">{p.problem}</p>
+          </div>
+          <div className="flex items-start gap-2.5">
+            <span className="mt-0.5 shrink-0 font-mono text-[10px] uppercase tracking-widest text-emerald/70">
+              Result
+            </span>
+            <p className="line-clamp-2 text-sm leading-relaxed text-white/55">{p.results[0]}</p>
+          </div>
+        </div>
+
+        <p className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/40">
+          <UserRound className="h-3.5 w-3.5 text-emerald/70" /> {p.role}
+        </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {p.stack.map((t) => (
@@ -134,17 +193,10 @@ function ProjectCard({ p, onOpen }: { p: Project; onOpen: () => void }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-white/80 transition-colors hover:border-emerald/40 hover:text-emerald"
             >
-              <ExternalLink className="h-3.5 w-3.5" /> Live
+              <ExternalLink className="h-3.5 w-3.5" /> Live Demo
             </a>
           )}
-          <a
-            href={p.github ?? GITHUB}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-white/80 transition-colors hover:border-emerald/40 hover:text-emerald"
-          >
-            <Github className="h-3.5 w-3.5" /> GitHub
-          </a>
+          <RepoAction p={p} />
           <button
             onClick={onOpen}
             aria-label="Open case study"
@@ -158,6 +210,54 @@ function ProjectCard({ p, onOpen }: { p: Project; onOpen: () => void }) {
   );
 }
 
+/** A titled prose block inside the case study. */
+function Block({
+  icon: Icon,
+  title,
+  children,
+  accent = "emerald",
+}: {
+  icon: typeof Cpu;
+  title: string;
+  children: React.ReactNode;
+  accent?: "emerald" | "amber";
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border p-4",
+        accent === "amber"
+          ? "border-amber-400/20 bg-amber-400/[0.04]"
+          : "border-white/10 bg-white/[0.03]"
+      )}
+    >
+      <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
+        <Icon className={cn("h-4 w-4", accent === "amber" ? "text-amber-400" : "text-emerald")} />
+        {title}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+function Bullets({ items, accent = "emerald" }: { items: string[]; accent?: "emerald" | "amber" }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-white/60">
+          <span
+            className={cn(
+              "mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full",
+              accent === "amber" ? "bg-amber-400" : "bg-emerald"
+            )}
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
   // Lock background scroll while the modal is open.
   useEffect(() => {
@@ -168,11 +268,14 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
     };
   }, []);
 
-  const blocks = [
-    { icon: Cpu, title: "Architecture", body: p.architecture },
-    { icon: Lightbulb, title: "Challenges", body: p.challenges },
-    { icon: Wrench, title: "Solutions", body: p.solutions },
-  ];
+  // Close on Escape — a modal this long is painful to dismiss by aiming at the backdrop.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
   return (
     <motion.div
@@ -184,6 +287,9 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${p.title} case study`}
         initial={{ opacity: 0, y: 40, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.98 }}
@@ -214,13 +320,23 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
           </div>
         </div>
 
-        <div className="p-6 sm:p-8">
+        <div className="space-y-4 p-6 sm:p-8">
           <p className="leading-relaxed text-white/65">{p.description}</p>
 
-          {/* Tech stack */}
-          <div className="mt-6">
-            <p className="mb-2.5 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Tech Stack
+          {/* 1 — Problem. Stated before anything else. */}
+          <Block icon={Target} title="The Problem" accent="amber">
+            <p className="text-sm leading-relaxed text-white/60">{p.problem}</p>
+          </Block>
+
+          {/* 2 — Solution */}
+          <Block icon={Lightbulb} title="The Solution">
+            <p className="text-sm leading-relaxed text-white/60">{p.solution}</p>
+          </Block>
+
+          {/* 3 — Tech */}
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <p className="mb-2.5 flex items-center gap-2 text-sm font-semibold text-white">
+              <Cpu className="h-4 w-4 text-emerald" /> Tech Stack
             </p>
             <div className="flex flex-wrap gap-2">
               {p.stack.map((t) => (
@@ -232,13 +348,11 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
                 </span>
               ))}
             </div>
+            <p className="mt-3 text-xs leading-relaxed text-white/40">{p.architecture}</p>
           </div>
 
-          {/* Key features */}
-          <div className="mt-6">
-            <p className="mb-2.5 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/40">
-              <Layers className="h-3.5 w-3.5 text-emerald" /> Key Features
-            </p>
+          {/* 4 — Features */}
+          <Block icon={Layers} title="Key Features">
             <div className="grid gap-2 sm:grid-cols-2">
               {p.features.map((f) => (
                 <div key={f} className="flex items-start gap-2 text-sm text-white/60">
@@ -247,22 +361,28 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
                 </div>
               ))}
             </div>
+          </Block>
+
+          {/* 5 — Challenges */}
+          <Block icon={Wrench} title="Hardest Part">
+            <p className="text-sm leading-relaxed text-white/60">{p.challenges}</p>
+          </Block>
+
+          {/* 6 — What I personally built */}
+          <Block icon={UserRound} title={`My Contribution — ${p.role}`}>
+            <Bullets items={p.contribution} />
+          </Block>
+
+          {/* 7 — Results */}
+          <div className="rounded-2xl border border-emerald/25 bg-emerald/[0.06] p-4">
+            <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
+              <TrendingUp className="h-4 w-4 text-emerald" /> Results
+            </p>
+            <Bullets items={p.results} />
           </div>
 
-          {/* Case-study blocks */}
-          <div className="mt-6 space-y-3">
-            {blocks.map((b) => (
-              <div key={b.title} className="glass rounded-2xl p-4">
-                <p className="mb-1 flex items-center gap-2 text-sm font-semibold text-white">
-                  <b.icon className="h-4 w-4 text-emerald" /> {b.title}
-                </p>
-                <p className="text-sm leading-relaxed text-white/55">{b.body}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Actions */}
-          <div className="mt-7 flex flex-wrap gap-2.5">
+          {/* 8 — Live demo & code */}
+          <div className="flex flex-wrap gap-2.5 pt-1">
             {p.live && (
               <a
                 href={p.live}
@@ -270,17 +390,10 @@ function CaseStudyModal({ p, onClose }: { p: Project; onClose: () => void }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald px-5 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-emerald-soft"
               >
-                <ExternalLink className="h-4 w-4" /> Visit Live Site
+                <ExternalLink className="h-4 w-4" /> Live Demo
               </a>
             )}
-            <a
-              href={p.github ?? GITHUB}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white/80 transition-colors hover:border-emerald/40 hover:text-emerald"
-            >
-              <Github className="h-4 w-4" /> View Code
-            </a>
+            <RepoAction p={p} size="md" />
           </div>
         </div>
       </motion.div>
@@ -297,7 +410,7 @@ export default function Projects() {
         <SectionHeading
           eyebrow="Selected Work"
           title="Projects & Case Studies"
-          subtitle="Production-grade applications across e-commerce, logistics, education, and real-time systems. Click a project to open its live site, or read the case study."
+          subtitle="Each one starts with the problem it had to solve and ends with what shipped — architecture, the hardest part, what I personally built, and the outcome. Open a case study, or go straight to the live site."
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -307,6 +420,18 @@ export default function Projects() {
             </Reveal>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-sm text-white/40">
+          Client codebases stay private.{" "}
+          <a
+            href={GITHUB}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald transition-colors hover:text-emerald-soft"
+          >
+            My public work is on GitHub →
+          </a>
+        </p>
       </div>
 
       <AnimatePresence>
