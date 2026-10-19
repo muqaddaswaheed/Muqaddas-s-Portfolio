@@ -1,60 +1,74 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Award, Briefcase, FileDown, GraduationCap } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import { experience } from "@/data/content";
+import { experience, type Job } from "@/data/content";
+import { site } from "@/data/site";
+
+const kindIcon: Record<Job["kind"], typeof Briefcase> = {
+  work: Briefcase,
+  education: GraduationCap,
+  certification: Award,
+};
+
+function KindIcon({ kind }: { kind: Job["kind"] }) {
+  const Icon = kindIcon[kind];
+  return <Icon className="h-3.5 w-3.5 text-accent" />;
+}
 
 export default function Experience() {
   return (
     <section id="experience" className="section-pad relative">
       <div className="container-max">
         <SectionHeading
+          as="h1"
           eyebrow="Career"
           title="Experience & Education"
-          subtitle="A track record of shipping, growing, and getting promoted."
+          subtitle="From Frontend Intern to Senior MERN Stack Developer — every role, degree, and certification on my CV."
         />
 
-        <div className="relative mx-auto max-w-3xl">
+        <div className="relative mx-auto max-w-4xl">
           {/* Line */}
-          <div className="absolute left-4 top-2 h-full w-px bg-gradient-to-b from-emerald/60 via-white/10 to-transparent md:left-1/2" />
+          {/* Line — a single left rail up to tablet, centred and alternating from lg */}
+          <div className="absolute left-4 top-2 h-full w-px bg-gradient-to-b from-accent/50 via-line to-transparent lg:left-1/2" />
 
-          <div className="space-y-10">
+          <div className="space-y-8 lg:space-y-10">
             {experience.map((job, i) => (
-              <Reveal key={job.company} delay={i}>
+              <Reveal key={job.company} delay={Math.min(i, 2)}>
                 <div
-                  className={`relative flex flex-col gap-4 md:flex-row md:items-center ${
-                    i % 2 === 0 ? "md:flex-row-reverse" : ""
+                  className={`relative flex flex-col gap-4 lg:flex-row lg:items-center ${
+                    i % 2 === 0 ? "lg:flex-row-reverse" : ""
                   }`}
                 >
                   {/* Dot */}
-                  <div className="absolute left-4 top-6 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-emerald/30 bg-ink-900 md:left-1/2">
-                    <Briefcase className="h-3.5 w-3.5 text-emerald" />
+                  <div className="absolute left-4 top-6 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-line bg-paper shadow-card lg:left-1/2">
+                    <KindIcon kind={job.kind} />
                   </div>
 
-                  <div className="md:w-1/2" />
-                  <div className="ml-10 md:ml-0 md:w-1/2 md:px-8">
-                    <div className="glass card-hover rounded-2xl p-6">
-                      <span className="font-mono text-xs text-emerald">{job.duration}</span>
-                      <h3 className="mt-1 text-lg font-semibold text-white">{job.role}</h3>
-                      <p className="text-sm text-white/50">
+                  <div className="lg:w-1/2" />
+                  <div className="ml-10 sm:ml-12 lg:ml-0 lg:w-1/2 lg:px-8">
+                    <div className="card p-6 transition-[border-color,box-shadow] duration-300 hover:border-line-strong hover:shadow-card-hover">
+                      <span className="font-mono text-xs font-medium text-accent-text">
+                        {job.duration}
+                      </span>
+                      <h2 className="mt-1.5 text-lg font-semibold tracking-tight text-ink sm:text-xl">
+                        {job.role}
+                      </h2>
+                      <p className="mt-0.5 text-sm text-ink-muted">
                         {job.company} · {job.location}
                       </p>
-                      <ul className="mt-4 space-y-2">
+                      <ul className="mt-5 space-y-2.5 border-t border-line pt-5">
                         {job.points.map((pt) => (
-                          <li key={pt} className="flex items-start gap-2 text-sm text-white/55">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald/70" />
+                          <li key={pt} className="flex items-start gap-2.5 text-body text-ink-muted">
+                            <span className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-ink-subtle" />
                             {pt}
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-4 flex flex-wrap gap-1.5">
+                      <div className="mt-5 flex flex-wrap gap-1.5">
                         {job.tech.map((t) => (
-                          <span
-                            key={t}
-                            className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-white/50"
-                          >
+                          <span key={t} className="tag">
                             {t}
                           </span>
                         ))}
@@ -66,6 +80,14 @@ export default function Experience() {
             ))}
           </div>
         </div>
+
+        <Reveal>
+          <div className="mt-14 flex justify-center">
+            <a href={site.resume} download={site.resumeFileName} className="btn btn-primary">
+              <FileDown className="h-4 w-4" /> Download full CV
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

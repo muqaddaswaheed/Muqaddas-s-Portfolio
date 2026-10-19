@@ -6,7 +6,7 @@ import Process from "@/components/sections/Process";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Muqaddas Waheed — a Full Stack MERN developer focused on scalable architecture, clean code, and premium user experiences.",
+    "About Muqaddas Waheed — a Senior MERN Stack Developer focused on scalable architecture, clean code, and premium user experiences.",
 };
 
 export default function AboutPage() {

@@ -6,27 +6,30 @@ export default function SectionHeading({
   eyebrow,
   title,
   subtitle,
+  as: Heading = "h2",
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  /** Use "h1" when this heading is the main title of its page. */
+  as?: "h1" | "h2";
 }) {
   return (
-    <div className="mx-auto mb-14 max-w-2xl text-center">
+    <div className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
       <Reveal>
-        <span className="inline-flex items-center gap-2 rounded-full border border-emerald/20 bg-emerald/5 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-emerald">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
+        <span className="eyebrow">
+          <span className="eyebrow-dot" />
           {eyebrow}
         </span>
       </Reveal>
       <Reveal delay={1}>
-        <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight text-gradient sm:text-5xl">
+        <Heading className="mt-5 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.025em] text-ink sm:text-4xl lg:text-[2.75rem]">
           {title}
-        </h2>
+        </Heading>
       </Reveal>
       {subtitle && (
         <Reveal delay={2}>
-          <p className="mt-4 text-pretty text-base leading-relaxed text-white/50">
+          <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-ink-muted sm:text-[1.0625rem]">
             {subtitle}
           </p>
         </Reveal>

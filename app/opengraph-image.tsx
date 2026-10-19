@@ -17,9 +17,10 @@ export default function OG() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #050506 0%, #0a0a0c 60%, #04120d 100%)",
-          color: "white",
+          background: "linear-gradient(160deg, #FFFFFF 0%, #FFFFFF 55%, #F0FDFA 100%)",
+          color: "#171717",
           fontFamily: "sans-serif",
+          borderBottom: "12px solid #0D9488",
         }}
       >
         <div
@@ -27,7 +28,7 @@ export default function OG() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            color: "#10b981",
+            color: "#525252",
             fontSize: 28,
           }}
         >
@@ -36,8 +37,8 @@ export default function OG() {
               width: 56,
               height: 56,
               borderRadius: 14,
-              background: "#10b981",
-              color: "#050506",
+              background: "#171717",
+              color: "#FFFFFF",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -52,8 +53,8 @@ export default function OG() {
         <div style={{ fontSize: 92, fontWeight: 800, marginTop: 40, letterSpacing: -2 }}>
           {site.name}
         </div>
-        <div style={{ fontSize: 44, color: "#34d399", marginTop: 8 }}>{site.role}</div>
-        <div style={{ fontSize: 26, color: "rgba(255,255,255,0.55)", marginTop: 28, maxWidth: 900 }}>
+        <div style={{ fontSize: 44, color: "#0F766E", marginTop: 8 }}>{site.role}</div>
+        <div style={{ fontSize: 26, color: "#525252", marginTop: 28, maxWidth: 900 }}>
           Next.js · React · TypeScript · Node · MongoDB · Firebase
         </div>
       </div>

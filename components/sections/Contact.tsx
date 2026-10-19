@@ -2,13 +2,24 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MapPin, Send, CheckCircle2 } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Github,
+  Linkedin,
+  MapPin,
+  Send,
+  CheckCircle2,
+  FileDown,
+  ArrowUpRight,
+} from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
 import { site } from "@/data/site";
+import { cn, linkTarget } from "@/lib/utils";
 
 const contactItems = [
   { icon: Mail, label: "Email", value: site.email, href: site.socials.email },
+  { icon: Phone, label: "Phone", value: site.phone, href: site.phoneHref },
   { icon: Github, label: "GitHub", value: "@muqaddaswaheed", href: site.socials.github },
   { icon: Linkedin, label: "LinkedIn", value: "muqaddas-waheed", href: site.socials.linkedin },
   { icon: MapPin, label: "Location", value: site.location, href: undefined },
@@ -30,43 +41,57 @@ export default function Contact() {
     <section id="contact" className="section-pad relative">
       <div className="container-max">
         <SectionHeading
+          as="h1"
           eyebrow="Contact"
           title="Let's build something great"
           subtitle="Have a project in mind or just want to say hi? I'm currently available for new work."
         />
 
-        <div className="glass-strong relative overflow-hidden rounded-3xl">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald/10 blur-3xl" />
-          <div className="relative grid gap-0 lg:grid-cols-2">
+        <div className="card overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
             {/* Info side */}
-            <div className="border-b border-white/10 p-8 md:p-10 lg:border-b-0 lg:border-r">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald/20 bg-emerald/5 px-4 py-1.5 text-xs text-emerald">
+            <div className="border-b border-line bg-paper-alt p-6 sm:p-8 md:p-10 lg:border-b-0 lg:border-r">
+              <div className="eyebrow">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                 </span>
                 Available for freelance & full-time
               </div>
-              <h3 className="mt-5 text-2xl font-bold text-white">Get in touch</h3>
-              <p className="mt-2 text-white/55">
+              <h2 className="mt-6 text-2xl font-bold tracking-tight text-ink">Get in touch</h2>
+              <p className="mt-2 leading-relaxed text-ink-muted">
                 I usually respond within a day. Let&apos;s talk about your product.
               </p>
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-8 space-y-2.5">
                 {contactItems.map((c) => {
                   const inner = (
-                    <div className="glass card-hover flex items-center gap-4 rounded-2xl p-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald/10 text-emerald">
-                        <c.icon className="h-5 w-5" />
+                    <div
+                      className={cn(
+                        "flex items-center gap-4 rounded-xl border border-line bg-paper p-3.5",
+                        c.href &&
+                          "transition-[border-color,box-shadow] duration-200 group-hover:border-accent/40 group-hover:shadow-card-hover"
+                      )}
+                    >
+                      <span className="icon-tile">
+                        <c.icon className="h-[18px] w-[18px]" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs text-white/40">{c.label}</p>
-                        <p className="truncate text-[13px] font-medium text-white">{c.value}</p>
+                        <p className="text-xs text-ink-subtle">{c.label}</p>
+                        <p className="truncate text-sm font-medium text-ink">{c.value}</p>
                       </div>
+                      {c.href && (
+                        <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-subtle transition-[color,transform] duration-200 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
+                      )}
                     </div>
                   );
                   return c.href ? (
-                    <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer" className="block">
+                    <a
+                      key={c.label}
+                      href={c.href}
+                      {...linkTarget(c.href)}
+                      className="group block rounded-xl"
+                    >
                       {inner}
                     </a>
                   ) : (
@@ -74,73 +99,95 @@ export default function Contact() {
                   );
                 })}
               </div>
+
+              <a
+                href={site.resume}
+                download={site.resumeFileName}
+                className="btn btn-secondary mt-6 w-full"
+              >
+                <FileDown className="h-4 w-4 text-ink-muted" /> Download my CV
+              </a>
             </div>
 
             {/* Form side */}
-            <div className="p-8 md:p-10">
+            <div className="p-6 sm:p-8 md:p-10">
               <div className="mb-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald/20 bg-emerald/5 px-4 py-1.5 text-xs text-emerald">
-                  <Send className="h-3.5 w-3.5" />
+                <div className="eyebrow">
+                  <Send className="h-3.5 w-3.5 text-accent" />
                   Send a message
                 </div>
-                <h3 className="mt-5 text-2xl font-bold text-white">Let&apos;s work together</h3>
-                <p className="mt-2 text-white/55">
+                <h2 className="mt-6 text-2xl font-bold tracking-tight text-ink">
+                  Let&apos;s work together
+                </h2>
+                <p className="mt-2 leading-relaxed text-ink-muted">
                   Fill in the form and I&apos;ll get back to you shortly.
                 </p>
               </div>
               {sent ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex h-full flex-col items-center justify-center text-center"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  role="status"
+                  className="flex flex-col items-center justify-center rounded-xl border border-accent/25 bg-accent-light/30 px-6 py-12 text-center"
                 >
-                  <CheckCircle2 className="h-14 w-14 text-emerald" />
-                  <h3 className="mt-4 text-xl font-semibold text-white">Message ready!</h3>
-                  <p className="mt-2 text-sm text-white/55">
+                  <CheckCircle2 className="h-12 w-12 text-accent" />
+                  <h3 className="mt-4 text-xl font-semibold text-ink">Message ready!</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-muted">
                     Your email client should have opened. If not, reach me at{" "}
-                    <span className="text-emerald">{site.email}</span>.
+                    <span className="font-medium text-accent-text">{site.email}</span>.
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
                   <div>
-                    <label className="mb-1.5 block text-sm text-white/60">Name</label>
+                    <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-ink">
+                      Name
+                    </label>
                     <input
+                      id="contact-name"
+                      name="name"
+                      autoComplete="name"
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="Your name"
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm outline-none transition-colors focus:border-emerald/50 placeholder:text-white/25"
+                      className="input"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm text-white/60">Email</label>
+                    <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-ink">
+                      Email
+                    </label>
                     <input
+                      id="contact-email"
+                      name="email"
+                      autoComplete="email"
                       required
                       type="email"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       placeholder="you@example.com"
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm outline-none transition-colors focus:border-emerald/50 placeholder:text-white/25"
+                      className="input"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm text-white/60">Message</label>
+                    <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-ink">
+                      Message
+                    </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       required
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Tell me about your project…"
-                      className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm outline-none transition-colors focus:border-emerald/50 placeholder:text-white/25"
+                      className="input resize-none"
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="group flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-emerald-soft"
-                  >
+                  <button type="submit" className="btn btn-primary btn-lg group w-full">
                     Send Message
-                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <Send className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
                 </form>
               )}

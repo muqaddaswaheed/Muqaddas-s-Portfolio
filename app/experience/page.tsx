@@ -4,7 +4,7 @@ import Experience from "@/components/sections/Experience";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "The career and education timeline of Muqaddas Waheed — Deventia Tech, BXTrack Solutions, certifications, and a CS degree.",
+    "The career and education timeline of Muqaddas Waheed — Senior MERN Stack Developer at Deventia Tech, Node.js Developer at BXTrack Solutions, Frontend Developer at HHTechHub, and a BS in Computer Science (CGPA 3.9/4.0).",
 };
 
 export default function ExperiencePage() {

@@ -3,26 +3,32 @@
 import Reveal from "@/components/ui/Reveal";
 import Counter from "@/components/ui/Counter";
 import { stats } from "@/data/content";
+import { cn } from "@/lib/utils";
 
 export default function Stats() {
   return (
-    <section className="relative px-5 py-16 sm:px-8">
+    <section className="relative px-5 pt-20 sm:px-8 md:pt-28">
       <div className="container-max">
-        <div className="glass-strong relative overflow-hidden rounded-3xl p-8 md:p-12">
-          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-emerald/10 blur-3xl" />
-          <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-emerald/10 blur-3xl" />
-          <div className="relative grid grid-cols-2 gap-8 md:grid-cols-5">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i}>
-                <div className="text-center">
-                  <p className="font-mono text-4xl font-bold text-emerald-gradient md:text-5xl">
-                    <Counter value={s.value} suffix={s.suffix} />
-                  </p>
-                  <p className="mt-2 text-xs text-white/50 md:text-sm">{s.label}</p>
-                </div>
+        {/* gap-px over a line-coloured background draws hairline dividers at every breakpoint */}
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-card md:grid-cols-5">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              // An odd last stat spans both mobile columns so it sits centred.
+              className={cn(
+                "bg-paper px-4 py-8 text-center md:py-10",
+                stats.length % 2 && i === stats.length - 1 && "col-span-2 md:col-span-1"
+              )}
+            >
+              {/* Reveal the content, not the cell, so the divider grid never shows through */}
+              <Reveal delay={i}>
+                <p className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-[2.75rem] md:leading-none">
+                  <Counter value={s.value} suffix={s.suffix} suffixClassName="text-accent" />
+                </p>
+                <p className="mt-3 text-sm text-ink-muted">{s.label}</p>
               </Reveal>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -2,85 +2,212 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design tokens — monochrome + deep teal. Stored as RGB channels so Tailwind's
+ * opacity modifiers work (tailwind.config.ts maps every colour to these).
+ */
 :root {
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+
+  --canvas: 255 255 255; /* #FFFFFF — page background */
+  --paper: 255 255 255; /* #FFFFFF — cards */
+  --paper-alt: 248 250 252; /* #F8FAFC — alternate sections */
+  --paper-hover: 241 245 249; /* #F1F5F9 — subtle hover fill */
+
+  --ink: 23 23 23; /* #171717 — headings + primary text */
+  --ink-muted: 82 82 82; /* #525252 — secondary text */
+  --ink-subtle: 115 115 115; /* #737373 — metadata (AA on white) */
+
+  --line: 229 231 235; /* #E5E7EB — standard borders */
+  --line-strong: 212 212 216; /* #D4D4D8 — hovered borders */
+
+  --accent: 13 148 136; /* #0D9488 */
+  --accent-hover: 15 118 110; /* #0F766E */
+  --accent-light: 204 251 241; /* #CCFBF1 */
+  --accent-fg: 255 255 255; /* text on a solid accent fill */
+
+  --logo-tile: 23 23 23;
+  --logo-mark: 255 255 255;
+  --glow: 0.07; /* strength of the soft accent wash behind the hero */
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-card-hover: 0 14px 32px -14px rgba(16, 24, 40, 0.16), 0 2px 6px -2px rgba(16, 24, 40, 0.05);
+  --shadow-pop: 0 18px 40px -12px rgba(16, 24, 40, 0.18), 0 2px 6px rgba(16, 24, 40, 0.04);
+
+  color-scheme: light;
 }
 
-* {
-  scroll-behavior: smooth;
+/*
+ * Dark theme — the previous version's palette: near-black ink, white text and
+ * the original emerald accent with its soft glow. Toggled by the `dark` class.
+ */
+.dark {
+  --canvas: 5 5 6; /* #050506 — page background */
+  --paper: 14 14 17; /* #0E0E11 — cards */
+  --paper-alt: 10 10 12; /* #0A0A0C — alternate sections */
+  --paper-hover: 24 24 29; /* #18181D */
+
+  --ink: 244 244 245; /* #F4F4F5 */
+  --ink-muted: 161 161 170; /* #A1A1AA */
+  --ink-subtle: 130 130 140; /* #82828C */
+
+  --line: 38 38 43; /* #26262B */
+  --line-strong: 63 63 70; /* #3F3F46 */
+
+  --accent: 16 185 129; /* #10B981 — emerald */
+  --accent-hover: 52 211 153; /* #34D399 — hover lightens on dark */
+  --accent-light: 6 78 59; /* #064E3B — tinted fills */
+  --accent-fg: 5 5 6;
+
+  --logo-tile: 16 185 129;
+  --logo-mark: 4 22 15;
+  --glow: 0.16;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 20px 50px -20px rgba(16, 185, 129, 0.35);
+  --shadow-pop: 0 20px 50px -12px rgba(0, 0, 0, 0.85);
+
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* Clears the fixed navbar when jumping to an #anchor. */
+  scroll-padding-top: 6rem;
+  /* `clip` (not `hidden`) so sticky elements keep working. */
+  overflow-x: clip;
 }
 
 body {
-  @apply bg-ink-950 text-white/90 antialiased;
-  background-image: radial-gradient(
-      600px circle at 0% 0%,
-      rgba(16, 185, 129, 0.06),
-      transparent 40%
-    ),
-    radial-gradient(800px circle at 100% 10%, rgba(16, 185, 129, 0.05), transparent 45%);
-  overflow-x: hidden;
-  max-width: 100vw;
+  @apply bg-canvas font-sans text-ink antialiased;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
 }
 
-/* Custom scrollbar */
+/* One consistent, visible keyboard focus ring everywhere. */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgb(var(--accent-light));
+  color: rgb(var(--ink));
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0c;
+  background: rgb(var(--paper-alt));
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#10b981, #059669);
+  background: rgb(var(--line-strong));
   border-radius: 999px;
-  border: 2px solid #0a0a0c;
+  border: 2px solid rgb(var(--paper-alt));
 }
-
-::selection {
-  background: rgba(16, 185, 129, 0.3);
-  color: #fff;
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ink-subtle));
 }
 
 @layer components {
-  .glass {
-    @apply border border-white/10 bg-white/[0.03] backdrop-blur-xl;
-  }
-  .glass-strong {
-    @apply border border-white/10 bg-white/[0.05] backdrop-blur-2xl;
-  }
-  .text-gradient {
-    @apply bg-gradient-to-br from-white via-white to-white/50 bg-clip-text text-transparent;
-  }
-  .text-emerald-gradient {
-    @apply bg-gradient-to-r from-emerald-soft to-emerald bg-clip-text text-transparent;
+  /* ---------- Layout ---------- */
+  .container-max {
+    @apply mx-auto w-full max-w-6xl;
   }
   .section-pad {
-    @apply px-5 py-24 sm:px-8 md:py-32;
+    @apply px-5 py-20 sm:px-8 md:py-28;
   }
-  .container-max {
-    @apply mx-auto w-full max-w-7xl;
+  /* Alternate band — separates a section from its neighbours. */
+  .section-alt {
+    @apply border-y border-line bg-paper-alt;
   }
+
+  /* ---------- Cards ---------- */
+  .card {
+    @apply rounded-2xl border border-line bg-paper shadow-card;
+  }
+  /* Lift + teal edge on hover. */
   .card-hover {
-    @apply transition-all duration-500 hover:border-emerald/30 hover:bg-white/[0.05];
+    @apply transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-accent/40 hover:shadow-card-hover motion-safe:hover:-translate-y-1;
+  }
+
+  /* Small square holding a section icon. Pair with `group` on the card. */
+  .icon-tile {
+    @apply inline-grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-line bg-paper-alt text-accent transition-colors duration-300 group-hover:border-accent/25 group-hover:bg-accent-light/50;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex h-11 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg px-5 text-sm font-semibold transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out active:scale-[0.98] motion-safe:hover:-translate-y-px motion-safe:active:translate-y-0;
+  }
+  .btn-sm {
+    @apply h-10 gap-1.5 px-4 text-[13px];
+  }
+  .btn-lg {
+    @apply h-12 px-6 text-[15px];
+  }
+  .btn-primary {
+    @apply bg-accent text-accent-fg shadow-[0_1px_2px_rgb(var(--accent)/0.25)] hover:bg-accent-hover hover:shadow-[0_8px_20px_-8px_rgb(var(--accent)/0.6)];
+  }
+  .btn-secondary {
+    @apply border border-line bg-paper text-ink shadow-card hover:border-line-strong hover:bg-paper-hover;
+  }
+  .btn-ghost {
+    @apply text-ink-muted hover:bg-paper-hover hover:text-ink;
+  }
+  /* Square icon-only button (socials, close, etc.). */
+  .btn-icon {
+    @apply inline-grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line bg-paper text-ink-muted transition-[background-color,border-color,color,transform] duration-200 hover:border-accent/40 hover:bg-accent-light/40 hover:text-accent-text motion-safe:hover:-translate-y-0.5;
+  }
+
+  /* Inline text link with a teal accent. */
+  .link-accent {
+    @apply inline-flex items-center gap-1.5 font-medium text-accent-text underline-offset-4 transition-colors duration-200 hover:text-ink hover:underline;
+  }
+
+  /* ---------- Labels & tags ---------- */
+  /* Section eyebrow: a quiet pill with a teal dot. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1 text-[13px] font-medium text-ink-muted shadow-card;
+  }
+  .eyebrow-dot {
+    @apply h-1.5 w-1.5 rounded-full bg-accent;
+  }
+  /* Small uppercase label for card sections (used sparingly). */
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-subtle;
+  }
+  /* Technology badge. */
+  .tag {
+    @apply inline-flex items-center rounded-full border border-line bg-paper-alt px-2.5 py-0.5 font-mono text-xs text-ink-muted;
+  }
+
+  /* ---------- Forms ---------- */
+  .input {
+    @apply w-full rounded-lg border border-line bg-paper px-3.5 py-2.5 text-[15px] text-ink shadow-card outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-ink-subtle hover:border-line-strong focus:border-accent focus:ring-4 focus:ring-accent/15 focus-visible:outline-none;
   }
 }
 
-.emerald-glow {
-  box-shadow: 0 0 60px -15px rgba(16, 185, 129, 0.5);
-}
-
-.noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
-}
-
+/*
+ * "Reduce motion": stop keyframe animations (page fade, status pings, scroll
+ * cue) and smooth scrolling. Colour transitions stay; hover lifts are already
+ * gated behind `motion-safe:`; Framer Motion is set to respect the same
+ * preference in components/ui/MotionProvider.tsx.
+ */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .animate-ping {
     animation: none !important;
-    transition: none !important;
   }
 }

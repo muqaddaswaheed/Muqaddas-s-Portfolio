@@ -3,7 +3,7 @@
 import { useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, linkTarget } from "@/lib/utils";
 
 type Props = {
   children: ReactNode;
@@ -11,9 +11,15 @@ type Props = {
   onClick?: () => void;
   variant?: "primary" | "ghost" | "outline";
   className?: string;
-  download?: boolean;
-  external?: boolean;
+  /** true, or the filename the browser should save the file as. */
+  download?: boolean | string;
 };
+
+// How far the button leans toward the pointer: a fraction of the offset,
+// capped so the pull stays a subtle nudge rather than a jump.
+const PULL = 0.15;
+const MAX_PULL = 6;
+const clamp = (v: number) => Math.max(-MAX_PULL, Math.min(MAX_PULL, v));
 
 export default function MagneticButton({
   children,
@@ -22,7 +28,6 @@ export default function MagneticButton({
   variant = "primary",
   className,
   download,
-  external,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -31,16 +36,16 @@ export default function MagneticButton({
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    setPos({ x: (e.clientX - (r.left + r.width / 2)) * 0.3, y: (e.clientY - (r.top + r.height / 2)) * 0.3 });
+    setPos({
+      x: clamp((e.clientX - (r.left + r.width / 2)) * PULL),
+      y: clamp((e.clientY - (r.top + r.height / 2)) * PULL),
+    });
   };
 
-  const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors";
   const styles = {
-    primary:
-      "bg-emerald text-ink-950 hover:bg-emerald-soft shadow-[0_0_30px_-8px_rgba(16,185,129,0.7)]",
-    outline: "border border-white/15 text-white hover:border-emerald/50 hover:text-emerald",
-    ghost: "text-white/70 hover:text-white",
+    primary: "btn-primary",
+    outline: "btn-secondary",
+    ghost: "btn-ghost",
   }[variant];
 
   const inner = (
@@ -49,29 +54,49 @@ export default function MagneticButton({
       onMouseMove={handleMove}
       onMouseLeave={() => setPos({ x: 0, y: 0 })}
       animate={{ x: pos.x, y: pos.y }}
+      whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300, damping: 20, mass: 0.4 }}
-      className={cn(base, styles, className)}
+      // Framer owns `transform` here, so CSS only transitions colour/shadow.
+      className={cn(
+        "btn btn-lg transition-[background-color,border-color,color,box-shadow] duration-200",
+        styles,
+        className
+      )}
     >
       {children}
     </motion.div>
   );
 
-  if (href) {
+  // The outer element carries the focus ring; the inner one carries the look.
+  const wrapper = "group inline-flex rounded-lg";
+
+  if (!href) {
     return (
-      <Link
-        href={href}
-        onClick={onClick}
-        download={download}
-        target={external ? "_blank" : undefined}
-        rel={external ? "noopener noreferrer" : undefined}
-      >
+      <button onClick={onClick} type="button" className={wrapper}>
+        {inner}
+      </button>
+    );
+  }
+
+  // Internal pages use client-side routing.
+  if (href.startsWith("/") && !download) {
+    return (
+      <Link href={href} onClick={onClick} className={wrapper}>
         {inner}
       </Link>
     );
   }
+
+  // Files, mailto:, tel: and external sites are plain anchors.
   return (
-    <button onClick={onClick} type="button">
+    <a
+      href={href}
+      onClick={onClick}
+      download={download === true ? "" : download || undefined}
+      {...linkTarget(href)}
+      className={wrapper}
+    >
       {inner}
-    </button>
+    </a>
   );
 }

@@ -1,6 +1,11 @@
 import type { Config } from "tailwindcss";
 
+// Every colour resolves to a CSS variable defined in app/globals.css, so the
+// palette lives in one place and opacity modifiers (e.g. `bg-accent/10`) work.
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 const config: Config = {
+  // Dark theme = `dark` class on <html>, set by ThemeToggle (see app/layout.tsx).
   darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
@@ -10,53 +15,64 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Text
         ink: {
-          950: "#050506",
-          900: "#0a0a0c",
-          800: "#111114",
-          700: "#18181d",
+          DEFAULT: token("ink"),
+          muted: token("ink-muted"),
+          subtle: token("ink-subtle"),
         },
-        emerald: {
-          DEFAULT: "#10b981",
-          soft: "#34d399",
-          glow: "#059669",
+        // Page background (differs from card surfaces in the dark theme)
+        canvas: token("canvas"),
+        // Surfaces
+        paper: {
+          DEFAULT: token("paper"),
+          alt: token("paper-alt"),
+          hover: token("paper-hover"),
+        },
+        // Borders
+        line: {
+          DEFAULT: token("line"),
+          strong: token("line-strong"),
+        },
+        // Deep teal accent
+        accent: {
+          DEFAULT: token("accent"),
+          hover: token("accent-hover"),
+          light: token("accent-light"),
+          // Teal for small text — the hover shade, which clears WCAG AA on white.
+          text: token("accent-hover"),
+          // Text/icons sitting on a solid accent fill (primary buttons).
+          fg: token("accent-fg"),
         },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
+      fontSize: {
+        // Card and timeline body copy — between `sm` and `base`.
+        body: ["0.9375rem", { lineHeight: "1.7" }],
+      },
+      // Per-theme values live in app/globals.css.
+      boxShadow: {
+        card: "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
+        pop: "var(--shadow-pop)",
+      },
       keyframes: {
+        // Ends on `none`, not translateY(0): a lingering transform would make
+        // <main> the containing block for position:fixed children (the modal).
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-14px)" },
-        },
-        "spin-slow": {
-          to: { transform: "rotate(360deg)" },
-        },
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "none" },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.7s cubic-bezier(0.22,1,0.36,1) forwards",
-        shimmer: "shimmer 3s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        "spin-slow": "spin-slow 18s linear infinite",
-        marquee: "marquee 32s linear infinite",
+        "fade-up": "fade-up 0.5s cubic-bezier(0.22,1,0.36,1) both",
       },
       backgroundImage: {
         "grid-faint":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          "linear-gradient(to right, rgb(var(--line) / 0.7) 1px, transparent 1px), linear-gradient(to bottom, rgb(var(--line) / 0.7) 1px, transparent 1px)",
       },
     },
   },

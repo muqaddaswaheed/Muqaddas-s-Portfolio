@@ -108,6 +108,7 @@ export const skillGroups: SkillGroup[] = [
 
 /* ---------------- Experience ---------------- */
 export type Job = {
+  kind: "work" | "education" | "certification";
   company: string;
   role: string;
   duration: string;
@@ -116,56 +117,75 @@ export type Job = {
   tech: string[];
 };
 
+// Same entries and order as the CV: Experience (newest first), then Education, then Certifications.
 export const experience: Job[] = [
   {
+    kind: "work",
     company: "Deventia Tech",
-    role: "MERN Stack Developer",
+    role: "Senior MERN Stack Developer",
     duration: "Apr 2026 — Present",
     location: "Full-time",
     points: [
-      "Developing scalable web applications and high-performance user interfaces.",
-      "Implementing modern frontend state and robust backend services.",
-      "Optimizing application speeds and streamlining team git workflows.",
-      "Collaborating on product features in an agile engineering cycle.",
+      "Developing scalable full-stack web applications and high-performance user interfaces using modern JavaScript technologies.",
+      "Implementing robust backend services, application state management, and API integrations.",
+      "Optimizing application workflows for performance and maintainability.",
+      "Collaborating with development teams in an agile engineering environment.",
     ],
-    tech: ["Next.js", "Node.js", "MongoDB", "TypeScript", "Redux Toolkit"],
+    tech: ["React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "TypeScript", "Redux Toolkit"],
   },
   {
+    kind: "work",
     company: "BXTrack Solutions",
-    role: "MERN Stack Developer & Intern → Junior Developer",
+    role: "Node.js Developer",
     duration: "Nov 2025 — Mar 2026",
-    location: "Promoted to Junior Developer",
+    location: "Full-time",
     points: [
-      "Built responsive React applications from scratch with scalable component structures.",
-      "Implemented modern UI/UX with Tailwind CSS and Bootstrap.",
-      "Developed full-stack apps with secure auth and well-structured REST APIs.",
-      "Promoted to Junior Developer to drive production pipelines and cross-platform state integrations.",
+      "Built and maintained backend services and RESTful APIs using Node.js and Express.js.",
+      "Implemented secure JWT authentication, role-based access control, and file handling with Multer.",
+      "Integrated databases and third-party services for reliable client-server communication.",
+      "Contributed to production pipelines and internal dashboard deployments through Git-based workflows.",
     ],
-    tech: ["React.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS"],
+    tech: ["Node.js", "Express.js", "MongoDB", "JWT", "RBAC", "Multer", "Git"],
   },
   {
-    company: "NFTP Web Development",
-    role: "Certification",
-    duration: "Aug 2023 — Oct 2023",
-    location: "Certification",
+    kind: "work",
+    company: "HHTechHub",
+    role: "Frontend Intern → Frontend Developer",
+    duration: "Nov 2024 — Aug 2025",
+    location: "Promoted to Frontend Developer",
     points: [
-      "Completed a comprehensive web development certification.",
-      "Covered core frontend and backend technologies.",
-      "Built responsive interfaces with modern JavaScript frameworks.",
+      "Joined as a Frontend Intern and was promoted to Frontend Developer.",
+      "Initiated and developed responsive React applications from scratch using scalable component structures.",
+      "Built interfaces with Tailwind CSS and Bootstrap, and integrated RESTful APIs.",
+      "Managed application state with Redux Toolkit and shipped production-ready interfaces through Git-based workflows.",
     ],
-    tech: ["JavaScript", "HTML", "CSS", "React.js"],
+    tech: ["React.js", "Redux Toolkit", "Tailwind CSS", "Bootstrap", "REST APIs", "Git"],
   },
   {
-    company: "PMAS Arid Agriculture University",
-    role: "BS in Computer Science — GPA 3.9/4.0",
-    duration: "Sep 2020 — May 2024",
-    location: "Rawalpindi",
+    kind: "education",
+    company: "PMAS Arid Agriculture University Rawalpindi",
+    role: "BS in Computer Science",
+    duration: "Sept 2020 — May 2024",
+    location: "CGPA 3.9/4.0",
     points: [
       "Bachelor of Science in Computer Science.",
-      "Graduated with a 3.9/4.0 GPA.",
-      "Final Year Project: Digital Eve — a 3D custom-apparel commerce platform.",
+      "Graduated with a CGPA of 3.9/4.0.",
+      "Final Year Project: Digital Eve — a 3D fashion e-commerce platform with real-time apparel customization.",
     ],
-    tech: ["Algorithms", "Databases", "Software Engineering"],
+    tech: ["Data Structures", "Algorithms", "Databases", "Software Engineering"],
+  },
+  {
+    kind: "certification",
+    company: "NFTP",
+    role: "Web Development Course",
+    duration: "2025",
+    location: "Certification",
+    points: [
+      "Comprehensive web development training covering responsive frontend development.",
+      "Modern JavaScript frameworks and backend fundamentals.",
+      "Practical, hands-on web application development.",
+    ],
+    tech: ["JavaScript", "React.js", "Node.js", "Responsive Design"],
   },
 ];
 
@@ -180,10 +200,10 @@ export const services: Service[] = [
   { title: "Authentication", desc: "JWT, Clerk & Firebase auth with role-based access control.", icon: ShieldCheck },
   { title: "Database Design", desc: "MongoDB, Firebase & Supabase schemas built to scale.", icon: Database },
   { title: "Real-time Systems", desc: "WebSockets, webhooks & live sync for fulfillment pipelines.", icon: Zap },
-  { title: "API Integration", desc: "Third-party & payment integrations wired cleanly and reliably.", icon: Puzzle },
+  { title: "Payments & API Integration", desc: "Stripe & PayFast payments, webhooks, and third-party APIs wired cleanly and reliably.", icon: Puzzle },
   { title: "Performance Optimization", desc: "Core Web Vitals, lazy loading, code splitting & caching.", icon: Gauge },
   { title: "Responsive Design", desc: "Flawless layouts from mobile to ultra-wide displays.", icon: Smartphone },
-  { title: "Deployment", desc: "CI-friendly production deploys on Vercel with best practices.", icon: Rocket },
+  { title: "Deployment & DevOps", desc: "Docker, CI/CD, and production deploys on Vercel, Render & Railway.", icon: Rocket },
   { title: "Firebase Integration", desc: "Real-time DB, auth and cloud sync for live applications.", icon: Cloud },
 ];
 
@@ -271,8 +291,8 @@ export const posts = [
 ];
 
 export const highlights = [
-  "Promoted to Junior Developer at BXTrack within months for driving production pipelines.",
-  "Shipped 6+ applications to production across e-commerce, logistics, and education.",
-  "Built real-time booking, fulfillment, and 3D commerce systems end-to-end.",
-  "Graduated with a 3.9/4.0 GPA in Computer Science.",
+  "Senior MERN Stack Developer at Deventia Tech, building full-stack applications end to end.",
+  "Promoted from Frontend Intern to Frontend Developer at HHTechHub.",
+  "Shipped 6+ applications to production across e-commerce, delivery, booking, and NGO platforms.",
+  "BS Computer Science, PMAS Arid Agriculture University — CGPA 3.9/4.0.",
 ];

@@ -35,16 +35,16 @@ export default function Github() {
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Contribution graph */}
           <Reveal className="lg:col-span-2">
-            <div className="glass h-full rounded-3xl p-6">
+            <div className="card h-full p-6">
               <div className="mb-5 flex items-center justify-between">
-                <p className="flex items-center gap-2 text-sm font-semibold text-white">
-                  <GithubIcon className="h-4 w-4 text-emerald" /> Contribution graph
+                <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                  <GithubIcon className="h-4 w-4 text-accent" /> Contribution graph
                 </p>
                 <a
                   href={site.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-emerald hover:underline"
+                  className="link-accent text-xs"
                 >
                   @muqaddaswaheed <ArrowUpRight className="h-3 w-3" />
                 </a>
@@ -60,20 +60,20 @@ export default function Github() {
                     className="h-3 w-3 rounded-[3px]"
                     style={{
                       backgroundColor:
-                        v === 0
-                          ? "rgba(255,255,255,0.05)"
-                          : `rgba(16,185,129,${0.2 + v * 0.2})`,
+                        v === 0 ? "rgb(var(--paper-hover))" : `rgb(var(--accent) / ${0.2 + v * 0.2})`,
                     }}
                   />
                 ))}
               </div>
-              <div className="mt-4 flex items-center justify-end gap-2 text-[10px] text-white/40">
+              <div className="mt-4 flex items-center justify-end gap-2 text-[10px] text-ink-subtle">
                 Less
                 {[0.05, 0.3, 0.5, 0.7, 0.95].map((o, i) => (
                   <span
                     key={i}
                     className="h-2.5 w-2.5 rounded-[2px]"
-                    style={{ backgroundColor: i === 0 ? "rgba(255,255,255,0.05)" : `rgba(16,185,129,${o})` }}
+                    style={{
+                      backgroundColor: i === 0 ? "rgb(var(--paper-hover))" : `rgb(var(--accent) / ${o})`,
+                    }}
                   />
                 ))}
                 More
@@ -83,15 +83,15 @@ export default function Github() {
 
           {/* Latest commits */}
           <Reveal delay={1}>
-            <div className="glass h-full rounded-3xl p-6">
-              <p className="mb-5 flex items-center gap-2 text-sm font-semibold text-white">
-                <GitCommit className="h-4 w-4 text-emerald" /> Latest commits
+            <div className="card h-full p-6">
+              <p className="mb-5 flex items-center gap-2 text-sm font-semibold text-ink">
+                <GitCommit className="h-4 w-4 text-accent" /> Latest commits
               </p>
               <div className="space-y-4">
                 {commits.map((c, i) => (
-                  <div key={i} className="border-l-2 border-emerald/30 pl-3">
-                    <p className="text-sm text-white/75">{c.msg}</p>
-                    <p className="mt-0.5 font-mono text-xs text-white/40">
+                  <div key={i} className="border-l-2 border-line pl-3">
+                    <p className="text-sm text-ink">{c.msg}</p>
+                    <p className="mt-0.5 font-mono text-xs text-ink-subtle">
                       {c.repo} · {c.time}
                     </p>
                   </div>
@@ -104,23 +104,23 @@ export default function Github() {
         {/* Pinned repos */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {repos.map((r, i) => (
-            <Reveal key={r.name} delay={i % 4}>
+            <Reveal key={r.name} delay={i % 4} className="h-full">
               <a
                 href={site.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass card-hover group block h-full rounded-2xl p-5"
+                className="card card-hover group block h-full p-5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 font-mono text-sm text-emerald">
-                    <GithubIcon className="h-4 w-4" /> {r.name}
+                  <span className="flex items-center gap-2 font-mono text-sm font-medium text-ink">
+                    <GithubIcon className="h-4 w-4 text-ink-muted" /> {r.name}
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-white/30 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="h-4 w-4 text-ink-subtle transition-[color,transform] duration-200 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
                 </div>
-                <p className="mt-2 text-sm text-white/50">{r.desc}</p>
-                <div className="mt-4 flex items-center gap-4 text-xs text-white/40">
+                <p className="mt-2 text-sm text-ink-muted">{r.desc}</p>
+                <div className="mt-4 flex items-center gap-4 text-xs text-ink-subtle">
                   <span className="flex items-center gap-1">
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald" /> {r.lang}
+                    <span className="h-2.5 w-2.5 rounded-full bg-accent" /> {r.lang}
                   </span>
                   <span className="flex items-center gap-1">
                     <Star className="h-3 w-3" /> {r.stars}

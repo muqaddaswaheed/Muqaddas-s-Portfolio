@@ -19,13 +19,13 @@ export default function BackToTop() {
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          initial={{ opacity: 0, scale: 0.6, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 20 }}
-          whileHover={{ y: -3 }}
-          className="glass-strong fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full text-emerald hover:emerald-glow"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 12 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="group fixed bottom-6 right-6 z-50 grid h-11 w-11 place-items-center rounded-full border border-line bg-paper text-ink-muted shadow-pop transition-colors duration-200 hover:border-accent/40 hover:text-accent-text"
         >
-          <ArrowUp className="h-5 w-5" />
+          <ArrowUp className="h-[18px] w-[18px] transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
         </motion.button>
       )}
     </AnimatePresence>

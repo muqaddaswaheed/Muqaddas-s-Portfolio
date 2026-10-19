@@ -7,10 +7,13 @@ export default function Counter({
   value,
   suffix = "",
   duration = 1600,
+  suffixClassName,
 }: {
   value: number;
   suffix?: string;
   duration?: number;
+  /** Lets the suffix (e.g. "+") take an accent colour. */
+  suffixClassName?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -31,9 +34,9 @@ export default function Counter({
   }, [inView, value, duration]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className="tabular-nums">
       {n.toLocaleString()}
-      {suffix}
+      {suffixClassName ? <span className={suffixClassName}>{suffix}</span> : suffix}
     </span>
   );
 }

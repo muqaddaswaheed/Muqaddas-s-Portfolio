@@ -3,12 +3,13 @@
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
+// A short fade + rise. `delay` is a stagger index, not seconds.
 const variants: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 16 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 },
   }),
 };
 
@@ -28,7 +29,7 @@ export default function Reveal({
       custom={delay}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-60px" }}
     >
       {children}
     </motion.div>

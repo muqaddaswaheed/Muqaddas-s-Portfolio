@@ -28,9 +28,9 @@ export default function Typewriter({ words }: { words: string[] }) {
   }, [text, del, i, words]);
 
   return (
-    <span className="text-emerald-gradient">
+    <span className="text-accent">
       {text}
-      <span className="ml-0.5 inline-block h-[1em] w-[3px] translate-y-1 animate-pulse bg-emerald" />
+      <span className="ml-0.5 inline-block h-[1em] w-[3px] translate-y-1 animate-pulse bg-accent" />
     </span>
   );
 }
