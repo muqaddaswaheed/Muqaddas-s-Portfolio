@@ -4,50 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Menu,
-  X,
-  ArrowRight,
-  ChevronDown,
-  Home,
-  User,
-  Cpu,
-  Briefcase,
-  FolderGit2,
-  Layers,
-  Mail,
-  FileDown,
-  type LucideIcon,
-} from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, FileDown } from "lucide-react";
 import Logo from "@/components/ui/Logo";
+import NavMenuLink from "@/components/ui/NavMenuLink";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
+import { nav, type NavItem } from "@/data/nav";
 import { site } from "@/data/site";
-
-type SubLink = { label: string; href: string; icon: LucideIcon; desc: string };
-type NavItem =
-  | { label: string; href: string; icon: LucideIcon; items?: never }
-  | { label: string; items: SubLink[]; href?: never; icon?: never };
-
-const nav: NavItem[] = [
-  { label: "Home", href: "/", icon: Home },
-  {
-    label: "About",
-    items: [
-      { label: "About Me", href: "/about", icon: User, desc: "Who I am & my philosophy" },
-      { label: "Skills", href: "/skills", icon: Cpu, desc: "My full tech stack" },
-      { label: "Experience", href: "/experience", icon: Briefcase, desc: "Career & education" },
-    ],
-  },
-  {
-    label: "Work",
-    items: [
-      { label: "Projects", href: "/projects", icon: FolderGit2, desc: "Selected case studies" },
-      { label: "Services", href: "/services", icon: Layers, desc: "What I can build for you" },
-    ],
-  },
-  { label: "Contact", href: "/contact", icon: Mail },
-];
 
 /**
  * Classic full-width bar. Transparent over the page at the top; once scrolled
@@ -130,7 +93,7 @@ export default function Navbar() {
         <Link
           href="/"
           aria-label="Muqaddas Waheed — home"
-          className="flex shrink-0 items-center rounded-lg transition-opacity duration-200 hover:opacity-80"
+          className="group flex shrink-0 items-center rounded-lg px-0.5"
         >
           <Logo />
         </Link>
@@ -182,42 +145,9 @@ export default function Navbar() {
                           transition={{ duration: 0.18, ease: "easeOut" }}
                           className="overflow-hidden rounded-xl border border-line bg-paper p-1.5 shadow-pop"
                         >
-                          {item.items.map((s) => {
-                            const sActive = pathname === s.href;
-                            return (
-                              <Link
-                                key={s.href}
-                                href={s.href}
-                                aria-current={sActive ? "page" : undefined}
-                                className={cn(
-                                  "group/item flex items-start gap-3 rounded-lg p-2.5 transition-colors duration-200",
-                                  sActive ? "bg-accent-light/40" : "hover:bg-paper-hover"
-                                )}
-                              >
-                                <span
-                                  className={cn(
-                                    "grid h-9 w-9 shrink-0 place-items-center rounded-lg border transition-colors duration-200",
-                                    sActive
-                                      ? "border-accent/25 bg-paper text-accent"
-                                      : "border-line bg-paper-alt text-ink-muted group-hover/item:border-accent/25 group-hover/item:bg-paper group-hover/item:text-accent"
-                                  )}
-                                >
-                                  <s.icon className="h-4 w-4" />
-                                </span>
-                                <div>
-                                  <p
-                                    className={cn(
-                                      "text-sm font-medium",
-                                      sActive ? "text-accent-text" : "text-ink"
-                                    )}
-                                  >
-                                    {s.label}
-                                  </p>
-                                  <p className="mt-0.5 text-xs text-ink-muted">{s.desc}</p>
-                                </div>
-                              </Link>
-                            );
-                          })}
+                          {item.items.map((s) => (
+                            <NavMenuLink key={s.href} link={s} active={pathname === s.href} />
+                          ))}
                         </motion.div>
                       )}
                     </AnimatePresence>

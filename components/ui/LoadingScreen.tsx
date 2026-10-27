@@ -21,7 +21,7 @@ export default function LoadingScreen() {
           exit={{ opacity: 0, transition: { duration: 0.35, ease: "easeOut" } }}
         >
           <div className="flex flex-col items-center gap-5">
-            <Logo showWord={false} className="scale-125" />
+            <Logo className="text-5xl" />
             <div className="h-[2px] w-32 overflow-hidden rounded-full bg-line">
               <motion.div
                 className="h-full bg-accent"

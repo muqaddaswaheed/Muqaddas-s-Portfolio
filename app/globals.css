@@ -27,8 +27,6 @@
   --accent-light: 204 251 241; /* #CCFBF1 */
   --accent-fg: 255 255 255; /* text on a solid accent fill */
 
-  --logo-tile: 23 23 23;
-  --logo-mark: 255 255 255;
   --glow: 0.07; /* strength of the soft accent wash behind the hero */
 
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04);
@@ -60,8 +58,6 @@
   --accent-light: 6 78 59; /* #064E3B — tinted fills */
   --accent-fg: 5 5 6;
 
-  --logo-tile: 16 185 129;
-  --logo-mark: 4 22 15;
   --glow: 0.16;
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);

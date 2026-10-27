@@ -1,44 +1,28 @@
 import { cn } from "@/lib/utils";
 
 /**
- * MW monogram mark. Light theme: near-black tile, white monogram, teal full
- * stop. Dark theme: the original emerald tile. Colours come from --logo-* tokens.
+ * "M." wordmark — a heavy, slanted M and a round accent dot (teal in the light
+ * theme, emerald in dark). Put `group` on the wrapping link and the dot hops
+ * on hover. Size it with a text-* class; everything scales in `em`.
  */
-export default function Logo({
-  className,
-  showWord = true,
-}: {
-  className?: string;
-  showWord?: boolean;
-}) {
+export default function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("flex items-center gap-2.5", className)}>
-      <span className="relative grid h-9 w-9 place-items-center">
-        <svg viewBox="0 0 40 40" className="h-9 w-9" aria-hidden>
-          <rect
-            x="1.5"
-            y="1.5"
-            width="37"
-            height="37"
-            rx="10"
-            style={{ fill: "rgb(var(--logo-tile))" }}
-          />
-          {/* M over W monogram (single mirrored zigzag) */}
-          <path
-            d="M9 13 L9 27 M9 13 L20 22 L31 13 M31 13 L31 27 M9 27 L20 20 L31 27"
-            fill="none"
-            style={{ stroke: "rgb(var(--logo-mark))" }}
-            strokeWidth="2.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-      {showWord && (
-        <span className="text-lg font-semibold tracking-tight text-ink">
-          Muqaddas<span className="text-accent">.</span>
-        </span>
+    <span
+      role="img"
+      aria-label="Muqaddas Waheed"
+      className={cn(
+        "inline-flex select-none items-baseline text-[2rem] font-extrabold leading-none tracking-tight text-ink",
+        className
       )}
+    >
+      {/* Skewed from the baseline so the foot stays put and the top leans right */}
+      <span aria-hidden className="inline-block origin-bottom -skew-x-[10deg]">
+        M
+      </span>
+      <span
+        aria-hidden
+        className="ml-[0.07em] inline-block h-[0.2em] w-[0.2em] rounded-full bg-accent transition-transform duration-300 ease-out motion-safe:group-hover:-translate-y-[0.18em]"
+      />
     </span>
   );
 }
